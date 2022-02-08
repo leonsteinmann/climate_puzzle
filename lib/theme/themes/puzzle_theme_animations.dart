@@ -15,4 +15,8 @@ abstract class PuzzleThemeAnimationDuration {
   /// The duration of a puzzle tile scale change animation.
   /// The animation may happen when a user hovers over a puzzle tile.
   static const puzzleTileScale = Duration(milliseconds: 230);
+
+  /// The duration of all background animations referring to climate change is happening
+  static const backgroundPulse = Duration(milliseconds: 1000);
+
 }

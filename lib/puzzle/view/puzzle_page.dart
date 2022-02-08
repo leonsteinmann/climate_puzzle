@@ -7,6 +7,7 @@ import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
+import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_atmosphere.dart';
 import 'package:very_good_slide_puzzle/simple/simple.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:very_good_slide_puzzle/timer/timer.dart';
@@ -44,7 +45,7 @@ class PuzzlePage extends StatelessWidget {
         BlocProvider(
           create: (context) => ThemeBloc(
             initialThemes: [
-              const SimpleTheme(),
+              //const SimpleTheme(),
               context.read<DashatarThemeBloc>().state.theme,
             ],
           ),
@@ -240,14 +241,26 @@ class PuzzleSections extends StatelessWidget {
         children: [
           theme.layoutDelegate.startSectionBuilder(state),
           const PuzzleMenu(),
-          const PuzzleBoard(),
+          Stack(
+            alignment: Alignment.center,
+              children: [
+                PuzzleBackgroundAtmosphere(),
+                const PuzzleBoard(),
+              ],
+          ),
           theme.layoutDelegate.endSectionBuilder(state),
         ],
       ),
       medium: (context, child) => Column(
         children: [
           theme.layoutDelegate.startSectionBuilder(state),
-          const PuzzleBoard(),
+          Stack(
+              alignment: Alignment.center,
+              children: [
+                PuzzleBackgroundAtmosphere(),
+                const PuzzleBoard(),
+              ],
+          ),
           theme.layoutDelegate.endSectionBuilder(state),
         ],
       ),
@@ -257,7 +270,13 @@ class PuzzleSections extends StatelessWidget {
           Expanded(
             child: theme.layoutDelegate.startSectionBuilder(state),
           ),
-          const PuzzleBoard(),
+          Stack(
+              alignment: Alignment.center,
+              children: [
+                PuzzleBackgroundAtmosphere(),
+                const PuzzleBoard(),
+              ],
+          ),
           Expanded(
             child: theme.layoutDelegate.endSectionBuilder(state),
           ),

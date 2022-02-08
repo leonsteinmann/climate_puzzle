@@ -279,29 +279,36 @@ class PuzzleBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
     final puzzle = context.select((PuzzleBloc bloc) => bloc.state.puzzle);
+    final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     final size = puzzle.getDimension();
     if (size == 0) return const CircularProgressIndicator();
 
-    return PuzzleKeyboardHandler(
-      child: BlocListener<PuzzleBloc, PuzzleState>(
-        listener: (context, state) {
-          if (theme.hasTimer && state.puzzleStatus == PuzzleStatus.complete) {
-            context.read<TimerBloc>().add(const TimerStopped());
-          }
-        },
-        child: theme.layoutDelegate.boardBuilder(
-          size,
-          puzzle.tiles
-              .map(
-                (tile) => _PuzzleTile(
-                  key: Key('puzzle_tile_${tile.value.toString()}'),
-                  tile: tile,
-                ),
-              )
-              .toList(),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        theme.layoutDelegate.boardBackgroundBuilder(state),
+        PuzzleKeyboardHandler(
+          child: BlocListener<PuzzleBloc, PuzzleState>(
+            listener: (context, state) {
+              if (theme.hasTimer && state.puzzleStatus == PuzzleStatus.complete) {
+                context.read<TimerBloc>().add(const TimerStopped());
+              }
+            },
+            child: theme.layoutDelegate.boardBuilder(
+              size,
+              puzzle.tiles
+                  .map(
+                    (tile) => _PuzzleTile(
+                      key: Key('puzzle_tile_${tile.value.toString()}'),
+                      tile: tile,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -90,6 +90,45 @@ class SimplePuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   }
 
   @override
+  Widget boardBackgroundBuilder(PuzzleState state) {
+    return Column(
+      children: [
+        const ResponsiveGap(
+          small: 32,
+          medium: 48,
+          large: 96,
+        ),
+        ResponsiveLayoutBuilder(
+          small: (_, __) => SizedBox.square(
+            dimension: _BoardSize.small*1.5,
+            child: Image.asset(
+              'assets/images/earth_background.png',
+              key: const Key('earth_background'),
+            ),
+          ),
+          medium: (_, __) => SizedBox.square(
+            dimension: _BoardSize.medium*1.5,
+            child: Image.asset(
+              'assets/images/earth_background.png',
+              key: const Key('earth_background'),
+            ),
+          ),
+          large: (_, __) => SizedBox.square(
+            dimension: _BoardSize.large*1.5,
+            child: Image.asset(
+              'assets/images/earth_background.png',
+              key: const Key('earth_background'),
+            ),
+          ),
+        ),
+        const ResponsiveGap(
+          large: 96,
+        ),
+      ],
+    );
+  }
+
+  @override
   Widget boardBuilder(int size, List<Widget> tiles) {
     return Column(
       children: [

@@ -119,4 +119,49 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   @override
   List<Object?> get props => [];
+
+  @override
+  Widget boardBackgroundBuilder(PuzzleState state) {
+    return Column(
+      children: [
+        const ResponsiveGap(
+          small: 32,
+          medium: 48,
+          large: 96,
+        ),
+        ResponsiveLayoutBuilder(
+          small: (_, __) => SizedBox.square(
+            dimension: _BoardSize.small*1.5,
+            child: Image.asset(
+              'assets/images/earth_background.png',
+              key: const Key('earth_background'),
+            ),
+          ),
+          medium: (_, __) => SizedBox.square(
+            dimension: _BoardSize.medium*1.5,
+            child: Image.asset(
+              'assets/images/earth_background.png',
+              key: const Key('earth_background'),
+            ),
+          ),
+          large: (_, __) => SizedBox.square(
+            dimension: _BoardSize.large*1.5,
+            child: Image.asset(
+              'assets/images/earth_background.png',
+              key: const Key('earth_background'),
+            ),
+          ),
+        ),
+        const ResponsiveGap(
+          large: 96,
+        ),
+      ],
+    );
+  }
+}
+
+abstract class _BoardSize {
+  static double small = 312;
+  static double medium = 424;
+  static double large = 472;
 }

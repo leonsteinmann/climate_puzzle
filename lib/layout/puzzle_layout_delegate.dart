@@ -34,6 +34,9 @@ abstract class PuzzleLayoutDelegate extends Equatable {
   /// the puzzle [state].
   Widget backgroundBuilder(PuzzleState state);
 
+  /// A widget builder for the background of the puzzle board
+  Widget boardBackgroundBuilder(PuzzleState state);
+
   /// A widget builder for the puzzle board.
   ///
   /// The board should have a dimension of [size]

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:simple_animations/simple_animations.dart';
 import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/l10n/l10n.dart';
@@ -8,6 +9,7 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_atmosphere.dart';
+import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_particles.dart';
 import 'package:very_good_slide_puzzle/simple/simple.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:very_good_slide_puzzle/timer/timer.dart';
@@ -235,6 +237,7 @@ class PuzzleSections extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
     final state = context.select((PuzzleBloc bloc) => bloc.state);
+    final tween = _createTween();
 
     return ResponsiveLayoutBuilder(
       small: (context, child) => Column(
@@ -244,6 +247,7 @@ class PuzzleSections extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
               children: [
+                BackgroundParticlesWidget(),
                 PuzzleBackgroundAtmosphere(),
                 const PuzzleBoard(),
               ],
@@ -257,6 +261,7 @@ class PuzzleSections extends StatelessWidget {
           Stack(
               alignment: Alignment.center,
               children: [
+                BackgroundParticlesWidget(),
                 PuzzleBackgroundAtmosphere(),
                 const PuzzleBoard(),
               ],
@@ -273,8 +278,10 @@ class PuzzleSections extends StatelessWidget {
           Stack(
               alignment: Alignment.center,
               children: [
+                BackgroundParticlesWidget(),
                 PuzzleBackgroundAtmosphere(),
                 const PuzzleBoard(),
+                //Positioned.fill(child: BackgroundParticlesWidget()),
               ],
           ),
           Expanded(
@@ -284,6 +291,21 @@ class PuzzleSections extends StatelessWidget {
       ),
     );
   }
+}
+
+enum _P { particles }
+
+TimelineTween<_P> _createTween() {
+  final tween = TimelineTween<_P>();
+
+  tween
+      .addScene(
+        begin: const Duration(milliseconds: 0),
+        end: const Duration(seconds: 10),
+      )
+      .animate(_P.particles, tween: Tween(begin: 0, end: 0.2));
+
+  return tween;
 }
 
 /// {@template puzzle_board}

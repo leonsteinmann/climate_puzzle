@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -51,15 +50,31 @@ class BackgroundParticlesPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final whitePaint = Paint()..color = Colors.orange;
+    final whitePaint = Paint()..color = Colors.white;
+    final bluePaint = Paint()..color = Colors.blue;
+    final redPaint = Paint()..color = Colors.red;
+    final blackPaint = Paint()..color = Colors.black;
 
-    gasParticles.forEach((gas) =>
-        canvas.drawCircle(gas.position, 20, whitePaint));
+    gasParticles.forEach((gas) {
+      if(gas.position.dx.isNegative) {
+        if(gas.position.dy.isNegative) {
+          canvas.drawCircle(gas.position, 20, whitePaint);
+        } else {
+          canvas.drawCircle(gas.position, 20, blackPaint);
+        }
+      } else {
+        if(gas.position.dy.isNegative) {
+          canvas.drawCircle(gas.position, 20, redPaint);
+        } else {
+          canvas.drawCircle(gas.position, 20, bluePaint);
+        }
+      }
+
+    });
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
-
 }
 
 class GasParticle {
@@ -90,5 +105,4 @@ class GasParticle {
       position = Offset(Random().nextDouble() * -1, Random().nextDouble() * -1);
     }
   }
-
 }

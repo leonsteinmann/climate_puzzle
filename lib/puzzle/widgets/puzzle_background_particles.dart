@@ -10,7 +10,7 @@ class BackgroundParticlesWidget extends StatefulWidget {
 class _BackgroundParticlesWidgetState extends State<BackgroundParticlesWidget> with SingleTickerProviderStateMixin {
 
   AnimationController? _controller;
-  List<GasParticle> gasParticles = List<GasParticle>.generate(100, (index) => GasParticle());
+  List<GasParticle> gasParticles = List<GasParticle>.generate(150, (index) => GasParticle());
 
 
   @override
@@ -50,23 +50,23 @@ class BackgroundParticlesPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final whitePaint = Paint()..color = Colors.white;
+    final yellowPaint = Paint()..color = Colors.yellow;
     final bluePaint = Paint()..color = Colors.blue;
     final redPaint = Paint()..color = Colors.red;
-    final blackPaint = Paint()..color = Colors.black;
+    final greenPaint = Paint()..color = Colors.green;
 
     gasParticles.forEach((gas) {
       if(gas.position.dx.isNegative) {
         if(gas.position.dy.isNegative) {
-          canvas.drawCircle(gas.position, 20, whitePaint);
+          canvas.drawCircle(gas.position, 15, yellowPaint);
         } else {
-          canvas.drawCircle(gas.position, 20, blackPaint);
+          canvas.drawCircle(gas.position, 15, greenPaint);
         }
       } else {
         if(gas.position.dy.isNegative) {
-          canvas.drawCircle(gas.position, 20, redPaint);
+          canvas.drawCircle(gas.position, 15, redPaint);
         } else {
-          canvas.drawCircle(gas.position, 20, bluePaint);
+          canvas.drawCircle(gas.position, 15, bluePaint);
         }
       }
 

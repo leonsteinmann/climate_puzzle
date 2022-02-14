@@ -15,7 +15,7 @@ class GreenDashatarTheme extends DashatarTheme {
       context.l10n.dashatarGreenDashLabelText;
 
   @override
-  Color get backgroundColor => PuzzleColors.greenPrimary;
+  Color get backgroundColor => PuzzleColors.black;
 
   @override
   Color get defaultColor => PuzzleColors.green90;
@@ -43,5 +43,5 @@ class GreenDashatarTheme extends DashatarTheme {
   String get audioAsset => 'assets/audio/skateboard.mp3';
 
   @override
-  String get dashAssetsDirectory => 'assets/images/dashatar/green';
+  String get dashAssetsDirectory => 'assets/images/puzzle_tiles';
 }

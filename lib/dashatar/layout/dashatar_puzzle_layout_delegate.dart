@@ -180,7 +180,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   Padding buildCompositionText() {
     return Padding(
-        padding: const EdgeInsets.all(35),
+        padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -189,41 +189,19 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
               children: [
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    style: TextStyle(fontSize: 16),
                     children: [
-                      TextSpan(
-                        text: "CO",
-                        style: PuzzleTextStyle.composition.copyWith(color: Colors.white),
-                      ),
-                      WidgetSpan(
-                        child: Transform.translate(
-                          offset: const Offset(0.0, 4.0),
-                          child: Text(
-                            '2',
-                            style: PuzzleTextStyle.composition.copyWith(color: Colors.white),
-                          ),
-                        ),
-                      ),
+                      buildUpperCase("CO", Colors.yellow),
+                      buildLowerCase("2", Colors.yellow),
                     ],
                   ),
                 ),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    style: TextStyle(fontSize: 16),
                     children: [
-                      TextSpan(
-                        text: "CH",
-                        style: PuzzleTextStyle.composition.copyWith(color: Colors.red),
-                      ),
-                      WidgetSpan(
-                        child: Transform.translate(
-                          offset: const Offset(0.0, 4.0),
-                          child: Text(
-                            '4',
-                            style: PuzzleTextStyle.composition.copyWith(color: Colors.red),
-                          ),
-                        ),
-                      ),
+                      buildUpperCase("CH", Colors.red),
+                      buildLowerCase("4", Colors.red),
                     ],
                   ),
                 ),
@@ -234,49 +212,28 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
               children: [
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    style: TextStyle(fontSize: 16),
                     children: [
-                      TextSpan(
-                        text: "N",
-                        style: PuzzleTextStyle.composition.copyWith(color: Colors.black),
-                      ),
-                      WidgetSpan(
-                        child: Transform.translate(
-                          offset: const Offset(0.0, 4.0),
-                          child: Text(
-                            '2',
-                            style: PuzzleTextStyle.composition.copyWith(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                      TextSpan(
-                        text: "O",
-                        style: PuzzleTextStyle.composition.copyWith(color: Colors.black),
-                      ),
+                      buildUpperCase("N", Colors.green),
+                      buildLowerCase("2", Colors.green),
+                      buildUpperCase("O", Colors.green),
                     ],
                   ),
                 ),
                 RichText(
+                  textAlign: TextAlign.end,
                   text: TextSpan(
-                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    style: TextStyle(fontSize: 16),
                     children: [
-                      TextSpan(
-                        text: "H",
-                        style: PuzzleTextStyle.composition.copyWith(color: Colors.blue),
-                      ),
-                      WidgetSpan(
-                        child: Transform.translate(
-                          offset: const Offset(0.0, 4.0),
-                          child: Text(
-                            '2',
-                            style: PuzzleTextStyle.composition.copyWith(color: Colors.blue),
-                          ),
-                        ),
-                      ),
-                      TextSpan(
-                        text: "O",
-                        style: PuzzleTextStyle.composition.copyWith(color: Colors.blue),
-                      ),
+                      buildUpperCase("Fluorinated gases \n HFC", Colors.blue),
+                      buildLowerCase("s", Colors.blue),
+                      buildUpperCase(", PFC", Colors.blue),
+                      buildLowerCase("s", Colors.blue),
+                      buildUpperCase(", SF", Colors.blue),
+                      buildLowerCase("6", Colors.blue),
+                      buildUpperCase(", NF", Colors.blue),
+                      buildLowerCase("3", Colors.blue),
+                      buildUpperCase("", Colors.blue),
                     ],
                   ),
                 ),
@@ -285,6 +242,25 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
           ],
         ),
       );
+  }
+
+  TextSpan buildUpperCase(String text, Color color) {
+    return TextSpan(
+      text: text,
+      style: PuzzleTextStyle.composition.copyWith(color: color),
+    );
+  }
+
+  WidgetSpan buildLowerCase(String text, Color color) {
+    return WidgetSpan(
+      child: Transform.translate(
+        offset: const Offset(0.0, 4.0),
+        child: Text(
+          text,
+          style: PuzzleTextStyle.composition.copyWith(color: color),
+        ),
+      ),
+    );
   }
 }
 

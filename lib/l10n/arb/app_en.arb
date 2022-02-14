@@ -8,7 +8,7 @@
     "@puzzleRestartTooltip": {
         "description": "Shown as a tooltip for the puzzle restart button"
     },
-    "puzzleChallengeTitle": "Puzzle Challenge",
+    "puzzleChallengeTitle": "Climate Puzzle",
     "@puzzleChallengeTitle": {
         "description": "Shown as the title of the puzzle"
     },

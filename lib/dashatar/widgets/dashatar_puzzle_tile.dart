@@ -151,6 +151,7 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
                       }
                     : null,
                 icon: Image.asset(
+                  //'assets/images/puzzle_tiles/oil.png',
                   theme.dashAssetForTile(widget.tile),
                   semanticLabel: context.l10n.puzzleTileLabelText(
                     widget.tile.value.toString(),

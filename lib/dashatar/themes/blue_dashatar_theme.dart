@@ -15,7 +15,7 @@ class BlueDashatarTheme extends DashatarTheme {
       context.l10n.dashatarBlueDashLabelText;
 
   @override
-  Color get backgroundColor => PuzzleColors.bluePrimary;
+  Color get backgroundColor => PuzzleColors.black;
 
   @override
   Color get defaultColor => PuzzleColors.blue90;

@@ -136,7 +136,7 @@ class _Puzzle extends StatelessWidget {
                 ),
                 child: Column(
                   children: const [
-                    PuzzleHeader(),
+                    //PuzzleHeader(),
                     PuzzleSections(),
                   ],
                 ),
@@ -186,7 +186,7 @@ class PuzzleHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
               PuzzleLogo(),
-              PuzzleMenu(),
+              //PuzzleMenu(),
             ],
           ),
         ),
@@ -198,7 +198,7 @@ class PuzzleHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
               PuzzleLogo(),
-              PuzzleMenu(),
+              //PuzzleMenu(),
             ],
           ),
         ),
@@ -237,13 +237,12 @@ class PuzzleSections extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
     final state = context.select((PuzzleBloc bloc) => bloc.state);
-    final tween = _createTween();
 
     return ResponsiveLayoutBuilder(
       small: (context, child) => Column(
         children: [
           theme.layoutDelegate.startSectionBuilder(state),
-          const PuzzleMenu(),
+          //const PuzzleMenu(),
           Stack(
             alignment: Alignment.center,
               children: [
@@ -293,20 +292,6 @@ class PuzzleSections extends StatelessWidget {
   }
 }
 
-enum _P { particles }
-
-TimelineTween<_P> _createTween() {
-  final tween = TimelineTween<_P>();
-
-  tween
-      .addScene(
-        begin: const Duration(milliseconds: 0),
-        end: const Duration(seconds: 10),
-      )
-      .animate(_P.particles, tween: Tween(begin: 0, end: 0.2));
-
-  return tween;
-}
 
 /// {@template puzzle_board}
 /// Displays the board of the puzzle.
@@ -328,7 +313,7 @@ class PuzzleBoard extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        theme.layoutDelegate.boardBackgroundBuilder(state),
+        theme.layoutDelegate.boardBackgroundBuilder(),
         PuzzleKeyboardHandler(
           child: BlocListener<PuzzleBloc, PuzzleState>(
             listener: (context, state) {

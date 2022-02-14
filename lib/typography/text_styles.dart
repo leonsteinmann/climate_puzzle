@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:very_good_slide_puzzle/colors/colors.dart';
@@ -127,6 +129,17 @@ class PuzzleTextStyle {
       fontSize: 300,
       height: 1,
       fontWeight: PuzzleFontWeight.bold,
+    );
+  }
+
+  /// Chemical composition text style
+  static TextStyle get composition {
+    return _baseTextStyle.copyWith(
+      fontSize: 16,
+      fontWeight: PuzzleFontWeight.bold,
+      fontFeatures: [
+        FontFeature.enable('subs'),
+      ],
     );
   }
 

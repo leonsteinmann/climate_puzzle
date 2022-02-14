@@ -90,7 +90,7 @@ class SimplePuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   }
 
   @override
-  Widget boardBackgroundBuilder(PuzzleState state) {
+  Widget boardBackgroundBuilder() {
     return Column(
       children: [
         const ResponsiveGap(

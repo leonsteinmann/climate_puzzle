@@ -1,8 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
+
+import '../../typography/typography.dart';
 
 /// {@template dashatar_puzzle_layout_delegate}
 /// A delegate for computing the layout of the puzzle UI
@@ -121,7 +125,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   List<Object?> get props => [];
 
   @override
-  Widget boardBackgroundBuilder(PuzzleState state) {
+  Widget boardBackgroundBuilder() {
     return Column(
       children: [
         const ResponsiveGap(
@@ -132,23 +136,38 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
         ResponsiveLayoutBuilder(
           small: (_, __) => SizedBox.square(
             dimension: _BoardSize.small*1.5,
-            child: Image.asset(
-              'assets/images/earth_background.png',
-              key: const Key('earth_background'),
+            child: Stack(
+              children: [
+                buildCompositionText(),
+                Image.asset(
+                  'assets/images/earth_background.png',
+                  key: const Key('earth_background'),
+                ),
+              ],
             ),
           ),
           medium: (_, __) => SizedBox.square(
             dimension: _BoardSize.medium*1.5,
-            child: Image.asset(
-              'assets/images/earth_background.png',
-              key: const Key('earth_background'),
+            child: Stack(
+              children: [
+                buildCompositionText(),
+                Image.asset(
+                  'assets/images/earth_background.png',
+                  key: const Key('earth_background'),
+                ),
+              ],
             ),
           ),
           large: (_, __) => SizedBox.square(
             dimension: _BoardSize.large*1.5,
-            child: Image.asset(
-              'assets/images/earth_background.png',
-              key: const Key('earth_background'),
+            child: Stack(
+              children: [
+                buildCompositionText(),
+                Image.asset(
+                  'assets/images/earth_background.png',
+                  key: const Key('earth_background'),
+                ),
+              ],
             ),
           ),
         ),
@@ -157,6 +176,115 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
         ),
       ],
     );
+  }
+
+  Padding buildCompositionText() {
+    return Padding(
+        padding: const EdgeInsets.all(35),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    children: [
+                      TextSpan(
+                        text: "CO",
+                        style: PuzzleTextStyle.composition.copyWith(color: Colors.white),
+                      ),
+                      WidgetSpan(
+                        child: Transform.translate(
+                          offset: const Offset(0.0, 4.0),
+                          child: Text(
+                            '2',
+                            style: PuzzleTextStyle.composition.copyWith(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    children: [
+                      TextSpan(
+                        text: "CH",
+                        style: PuzzleTextStyle.composition.copyWith(color: Colors.red),
+                      ),
+                      WidgetSpan(
+                        child: Transform.translate(
+                          offset: const Offset(0.0, 4.0),
+                          child: Text(
+                            '4',
+                            style: PuzzleTextStyle.composition.copyWith(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    children: [
+                      TextSpan(
+                        text: "N",
+                        style: PuzzleTextStyle.composition.copyWith(color: Colors.black),
+                      ),
+                      WidgetSpan(
+                        child: Transform.translate(
+                          offset: const Offset(0.0, 4.0),
+                          child: Text(
+                            '2',
+                            style: PuzzleTextStyle.composition.copyWith(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      TextSpan(
+                        text: "O",
+                        style: PuzzleTextStyle.composition.copyWith(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                    children: [
+                      TextSpan(
+                        text: "H",
+                        style: PuzzleTextStyle.composition.copyWith(color: Colors.blue),
+                      ),
+                      WidgetSpan(
+                        child: Transform.translate(
+                          offset: const Offset(0.0, 4.0),
+                          child: Text(
+                            '2',
+                            style: PuzzleTextStyle.composition.copyWith(color: Colors.blue),
+                          ),
+                        ),
+                      ),
+                      TextSpan(
+                        text: "O",
+                        style: PuzzleTextStyle.composition.copyWith(color: Colors.blue),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
   }
 }
 

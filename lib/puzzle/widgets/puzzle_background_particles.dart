@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+import '../../colors/colors.dart';
+
 class BackgroundParticlesWidget extends StatefulWidget {
 
   @override
@@ -50,23 +52,24 @@ class BackgroundParticlesPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final yellowPaint = Paint()..color = Colors.yellow;
-    final bluePaint = Paint()..color = Colors.blue;
-    final redPaint = Paint()..color = Colors.red;
-    final greenPaint = Paint()..color = Colors.green;
+    final main1 = Paint()..color = PuzzleColors.orangeDarkAccent;
+    final main2 = Paint()..color = PuzzleColors.redDarkAccent;
+    final main3 = Paint()..color = PuzzleColors.roseDarkAccent;
+    final main4 = Paint()..color = PuzzleColors.lilaDarkAccent;
 
     gasParticles.forEach((gas) {
+      /// 3D effect by making big particles faster than small
       if(gas.position.dx.isNegative) {
         if(gas.position.dy.isNegative) {
-          canvas.drawCircle(gas.position, 15, yellowPaint);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main1);
         } else {
-          canvas.drawCircle(gas.position, 15, greenPaint);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main3);
         }
       } else {
         if(gas.position.dy.isNegative) {
-          canvas.drawCircle(gas.position, 15, redPaint);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main2);
         } else {
-          canvas.drawCircle(gas.position, 15, bluePaint);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main4);
         }
       }
 
@@ -79,7 +82,7 @@ class BackgroundParticlesPainter extends CustomPainter {
 
 class GasParticle {
   GasParticle();
-  double velocity = Random().nextDouble() * 4 + 2;
+  double velocity = Random().nextDouble() * 2 + 2;
   Offset position = Offset(Random().nextDouble(), Random().nextDouble());
   Offset direction = Random().nextBool()
       ? Offset(

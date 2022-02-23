@@ -5,6 +5,9 @@ import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
+import 'package:very_good_slide_puzzle/theme/widgets/puzzleDescription.dart';
+
+import '../../colors/colors.dart';
 
 /// {@template dashatar_start_section}
 /// Displays the start section of the puzzle based on [state].
@@ -24,51 +27,72 @@ class DashatarStartSection extends StatelessWidget {
     final status =
         context.select((DashatarPuzzleBloc bloc) => bloc.state.status);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const ResponsiveGap(
-          small: 20,
-          medium: 83,
-          large: 151,
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Container(
+        /*padding: EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter, // 10% of the width, so there are ten blinds.
+            colors: <Color>[
+              PuzzleColors.blueLightAccent,
+              PuzzleColors.lilaLightAccent,
+              PuzzleColors.roseLightAccent,
+              PuzzleColors.redLightAccent,
+            ], // red to yellow
+            tileMode: TileMode.repeated, // repeats the gradient over the canvas
+          ),
+        ),*/
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ResponsiveGap(
+              small: 20,
+              medium: 83,
+              large: 151,
+            ),
+
+            PuzzleTitle(
+              key: puzzleTitleKey,
+              title: context.l10n.puzzleChallengeTitle,
+            ),
+            const ResponsiveGap(large: 16),
+            PuzzleDescription(
+                key: puzzleDescriptionKey,
+                text: context.l10n.puzzleChallengeDescription,
+            ),
+            const ResponsiveGap(
+              small: 12,
+              medium: 16,
+              large: 32,
+            ),
+            NumberOfMovesAndTilesLeft(
+              key: numberOfMovesAndTilesLeftKey,
+              numberOfMoves: state.numberOfMoves,
+              numberOfTilesLeft: status == DashatarPuzzleStatus.started
+                  ? state.numberOfTilesLeft
+                  : state.puzzle.tiles.length - 1,
+            ),
+            const ResponsiveGap(
+              small: 8,
+              medium: 18,
+              large: 32,
+            ),
+            ResponsiveLayoutBuilder(
+              small: (_, __) => const SizedBox(),
+              medium: (_, __) => const SizedBox(),
+              large: (_, __) => const DashatarPuzzleActionButton(),
+            ),
+            ResponsiveLayoutBuilder(
+              small: (_, __) => const DashatarTimer(),
+              medium: (_, __) => const DashatarTimer(),
+              large: (_, __) => const SizedBox(),
+            ),
+            const ResponsiveGap(small: 12),
+          ],
         ),
-        PuzzleName(
-          key: puzzleNameKey,
-        ),
-        const ResponsiveGap(large: 16),
-        PuzzleTitle(
-          key: puzzleTitleKey,
-          title: context.l10n.puzzleChallengeTitle,
-        ),
-        const ResponsiveGap(
-          small: 12,
-          medium: 16,
-          large: 32,
-        ),
-        NumberOfMovesAndTilesLeft(
-          key: numberOfMovesAndTilesLeftKey,
-          numberOfMoves: state.numberOfMoves,
-          numberOfTilesLeft: status == DashatarPuzzleStatus.started
-              ? state.numberOfTilesLeft
-              : state.puzzle.tiles.length - 1,
-        ),
-        const ResponsiveGap(
-          small: 8,
-          medium: 18,
-          large: 32,
-        ),
-        ResponsiveLayoutBuilder(
-          small: (_, __) => const SizedBox(),
-          medium: (_, __) => const SizedBox(),
-          large: (_, __) => const DashatarPuzzleActionButton(),
-        ),
-        ResponsiveLayoutBuilder(
-          small: (_, __) => const DashatarTimer(),
-          medium: (_, __) => const DashatarTimer(),
-          large: (_, __) => const SizedBox(),
-        ),
-        const ResponsiveGap(small: 12),
-      ],
+      ),
     );
   }
 }

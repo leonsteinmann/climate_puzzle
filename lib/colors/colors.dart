@@ -2,6 +2,28 @@ import 'package:flutter/widgets.dart';
 
 /// Defines the color palette for the puzzle UI.
 abstract class PuzzleColors {
+
+  /// Orange --> CO2
+  static const Color orangeLightAccent = Color(0xFFF8B195);
+  static const Color orangeDarkAccent = Color(0xFFD0896D);
+
+
+  /// Red --> CH4
+  static const Color redLightAccent = Color(0xFFF67280);
+  static const Color redDarkAccent = Color(0xFFCE4A58);
+
+  /// Rose --> N2O
+  static const Color roseLightAccent = Color(0xFFC06C84);
+  static const Color roseDarkAccent = Color(0xFF98445C);
+
+  /// Lila --> Fluorinated
+  static const Color lilaLightAccent = Color(0xFF6C5B7B);
+  static const Color lilaDarkAccent = Color(0xFF443353);
+
+  /// Blue --> Extra Color
+  static const Color blueLightAccent = Color(0xFF255C7D);
+  static const Color blueDarkAccent = Color(0xFF003455);
+
   /// Primary 1
   static const Color primary1 = Color(0xFF041E3C);
 

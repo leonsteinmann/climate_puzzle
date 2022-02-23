@@ -15,7 +15,7 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 /// By default allows to choose between [BlueDashatarTheme],
 /// [GreenDashatarTheme] or [YellowDashatarTheme].
 /// {@endtemplate}
-class DashatarThemePicker extends StatefulWidget {
+/*class DashatarThemePicker extends StatefulWidget {
   /// {@macro dashatar_theme_picker}
   const DashatarThemePicker({
     Key? key,
@@ -124,4 +124,4 @@ class _DashatarThemePickerState extends State<DashatarThemePicker> {
       ),
     );
   }
-}
+}*/

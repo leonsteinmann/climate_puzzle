@@ -12,6 +12,10 @@
     "@puzzleChallengeTitle": {
         "description": "Shown as the title of the puzzle"
     },
+    "puzzleChallengeDescription": "A simple puzzle game to better understand the human caused climate change. Sort the origins of each greenhouse gas by switching their positions. The longer you need, the warmer it will become on earth. ",
+        "@puzzleChallengeTitle": {
+            "description": "Puzzle description"
+        },
     "puzzleNumberOfMoves": "Moves",
     "@puzzleNumberOfMoves": {
         "description": "Indicates how many moves have been made on the current puzzle"

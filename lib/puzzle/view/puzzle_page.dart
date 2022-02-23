@@ -10,6 +10,7 @@ import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_atmosphere.dart';
 import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_particles.dart';
+import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_thermometer.dart';
 import 'package:very_good_slide_puzzle/simple/simple.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:very_good_slide_puzzle/timer/timer.dart';
@@ -242,6 +243,7 @@ class PuzzleSections extends StatelessWidget {
       small: (context, child) => Column(
         children: [
           theme.layoutDelegate.startSectionBuilder(state),
+          PuzzleThermometer(),
           //const PuzzleMenu(),
           Stack(
             alignment: Alignment.center,
@@ -257,6 +259,7 @@ class PuzzleSections extends StatelessWidget {
       medium: (context, child) => Column(
         children: [
           theme.layoutDelegate.startSectionBuilder(state),
+          PuzzleThermometer(),
           Stack(
               alignment: Alignment.center,
               children: [
@@ -284,8 +287,9 @@ class PuzzleSections extends StatelessWidget {
               ],
           ),
           Expanded(
-            child: theme.layoutDelegate.endSectionBuilder(state),
+            child: PuzzleThermometer(),
           ),
+          theme.layoutDelegate.endSectionBuilder(state),
         ],
       ),
     );
@@ -520,6 +524,11 @@ final puzzleNameKey = GlobalKey(debugLabel: 'puzzle_name');
 ///
 /// Used to animate the transition of [PuzzleTitle] when changing a theme.
 final puzzleTitleKey = GlobalKey(debugLabel: 'puzzle_title');
+
+/// The global key of [PuzzleTitle].
+///
+/// Used to animate the transition of [PuzzleTitle] when changing a theme.
+final puzzleDescriptionKey = GlobalKey(debugLabel: 'puzzle_description');
 
 /// The global key of [NumberOfMovesAndTilesLeft].
 ///

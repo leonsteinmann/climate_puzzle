@@ -71,7 +71,7 @@ void main() {
         timerBloc: timerBloc,
       );
 
-      expect(find.byType(PuzzleName), findsOneWidget);
+      expect(find.byType(PuzzleDescription), findsOneWidget);
     });
 
     testWidgets('renders PuzzleTitle', (tester) async {

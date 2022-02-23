@@ -6,6 +6,7 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 
+import '../../colors/colors.dart';
 import '../../typography/typography.dart';
 
 /// {@template dashatar_puzzle_layout_delegate}
@@ -22,7 +23,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
       small: (_, child) => child!,
       medium: (_, child) => child!,
       large: (_, child) => Padding(
-        padding: const EdgeInsets.only(left: 50, right: 32),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: child,
       ),
       child: (_) => DashatarStartSection(state: state),
@@ -47,11 +48,11 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
           small: 32,
           medium: 54,
         ),
-        ResponsiveLayoutBuilder(
+        /*ResponsiveLayoutBuilder(
           small: (_, child) => const DashatarThemePicker(),
           medium: (_, child) => const DashatarThemePicker(),
           large: (_, child) => const SizedBox(),
-        ),
+        ),*/
         const ResponsiveGap(
           small: 32,
           medium: 54,
@@ -69,11 +70,12 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
     return Positioned(
       bottom: 74,
       right: 50,
-      child: ResponsiveLayoutBuilder(
+      child: Container(),
+      /*child: ResponsiveLayoutBuilder(
         small: (_, child) => const SizedBox(),
         medium: (_, child) => const SizedBox(),
         large: (_, child) => const DashatarThemePicker(),
-      ),
+      ),*/
     );
   }
 
@@ -179,6 +181,11 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   }
 
   Padding buildCompositionText() {
+    const main1 = PuzzleColors.orangeLightAccent;
+    const main2 = PuzzleColors.redLightAccent;
+    const main3 = PuzzleColors.roseLightAccent;
+    const main4 = PuzzleColors.lilaLightAccent;
+
     return Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -191,8 +198,8 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                   text: TextSpan(
                     style: TextStyle(fontSize: 16),
                     children: [
-                      buildUpperCase("CO", Colors.yellow),
-                      buildLowerCase("2", Colors.yellow),
+                      buildUpperCase("CO", main1),
+                      buildLowerCase("2", main1),
                     ],
                   ),
                 ),
@@ -200,8 +207,8 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                   text: TextSpan(
                     style: TextStyle(fontSize: 16),
                     children: [
-                      buildUpperCase("CH", Colors.red),
-                      buildLowerCase("4", Colors.red),
+                      buildUpperCase("CH", main2),
+                      buildLowerCase("4", main2),
                     ],
                   ),
                 ),
@@ -214,9 +221,9 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                   text: TextSpan(
                     style: TextStyle(fontSize: 16),
                     children: [
-                      buildUpperCase("N", Colors.green),
-                      buildLowerCase("2", Colors.green),
-                      buildUpperCase("O", Colors.green),
+                      buildUpperCase("N", main3),
+                      buildLowerCase("2", main3),
+                      buildUpperCase("O", main3),
                     ],
                   ),
                 ),
@@ -225,15 +232,15 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                   text: TextSpan(
                     style: TextStyle(fontSize: 16),
                     children: [
-                      buildUpperCase("Fluorinated gases \n HFC", Colors.blue),
-                      buildLowerCase("s", Colors.blue),
-                      buildUpperCase(", PFC", Colors.blue),
-                      buildLowerCase("s", Colors.blue),
-                      buildUpperCase(", SF", Colors.blue),
-                      buildLowerCase("6", Colors.blue),
-                      buildUpperCase(", NF", Colors.blue),
-                      buildLowerCase("3", Colors.blue),
-                      buildUpperCase("", Colors.blue),
+                      buildUpperCase("Fluorinated gases \n HFC", main4),
+                      buildLowerCase("s", main4),
+                      buildUpperCase(", PFC", main4),
+                      buildLowerCase("s", main4),
+                      buildUpperCase(", SF", main4),
+                      buildLowerCase("6", main4),
+                      buildUpperCase(", NF", main4),
+                      buildLowerCase("3", main4),
+                      buildUpperCase("", main4),
                     ],
                   ),
                 ),

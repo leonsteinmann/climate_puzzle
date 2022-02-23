@@ -364,7 +364,7 @@ void main() {
           themeBloc: themeBloc,
         );
 
-        expect(find.byType(PuzzleName), findsOneWidget);
+        expect(find.byType(PuzzleDescription), findsOneWidget);
       });
 
       testWidgets('renders SimplePuzzleTitle', (tester) async {

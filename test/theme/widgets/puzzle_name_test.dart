@@ -30,7 +30,7 @@ void main() {
       tester.setLargeDisplaySize();
 
       await tester.pumpApp(
-        PuzzleName(),
+        PuzzleDescription(),
         themeBloc: themeBloc,
       );
 
@@ -43,7 +43,7 @@ void main() {
       tester.setMediumDisplaySize();
 
       await tester.pumpApp(
-        PuzzleName(),
+        PuzzleDescription(),
         themeBloc: themeBloc,
       );
 
@@ -57,7 +57,7 @@ void main() {
       tester.setSmallDisplaySize();
 
       await tester.pumpApp(
-        PuzzleName(),
+        PuzzleDescription(),
         themeBloc: themeBloc,
       );
 
@@ -71,7 +71,7 @@ void main() {
       const color = Colors.purple;
 
       await tester.pumpApp(
-        PuzzleName(color: color),
+        PuzzleDescription(color: color),
         themeBloc: themeBloc,
       );
 
@@ -92,7 +92,7 @@ void main() {
       when(() => theme.nameColor).thenReturn(nameColor);
 
       await tester.pumpApp(
-        PuzzleName(),
+        PuzzleDescription(),
         themeBloc: themeBloc,
       );
 

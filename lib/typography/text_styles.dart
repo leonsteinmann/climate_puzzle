@@ -143,6 +143,14 @@ class PuzzleTextStyle {
     );
   }
 
+  /// Thermometer text style
+  static TextStyle get thermometer {
+    return _baseTextStyle.copyWith(
+      fontSize: 14,
+      fontWeight: PuzzleFontWeight.bold,
+    );
+  }
+
   static const _baseTextStyle = TextStyle(
     fontFamily: 'GoogleSans',
     color: PuzzleColors.black,

@@ -49,8 +49,9 @@ class PuzzleButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
           ),
         ).copyWith(
-          backgroundColor: MaterialStateProperty.all(buttonBackgroundColor),
-          foregroundColor: MaterialStateProperty.all(buttonTextColor),
+          backgroundColor: MaterialStateProperty.all(PuzzleColors.redLightAccent),
+          //backgroundColor: MaterialStateProperty.all(buttonBackgroundColor),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
         ),
         onPressed: onPressed,
         child: child,

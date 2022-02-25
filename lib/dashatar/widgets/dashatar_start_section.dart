@@ -48,8 +48,8 @@ class DashatarStartSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const ResponsiveGap(
-              small: 20,
-              medium: 83,
+              small: 10,
+              medium: 20,
               large: 151,
             ),
 
@@ -63,25 +63,35 @@ class DashatarStartSection extends StatelessWidget {
                 text: context.l10n.puzzleChallengeDescription,
             ),
             const ResponsiveGap(
-              small: 12,
-              medium: 16,
+              small: 10,
+              medium: 15,
               large: 32,
             ),
-            NumberOfMovesAndTilesLeft(
+            /*NumberOfMovesAndTilesLeft(
               key: numberOfMovesAndTilesLeftKey,
               numberOfMoves: state.numberOfMoves,
               numberOfTilesLeft: status == DashatarPuzzleStatus.started
                   ? state.numberOfTilesLeft
                   : state.puzzle.tiles.length - 1,
-            ),
-            const ResponsiveGap(
-              small: 8,
-              medium: 18,
+            ),*/
+            /*const ResponsiveGap(
+              small: 5,
+              medium: 10,
               large: 32,
-            ),
+            ),*/
             ResponsiveLayoutBuilder(
-              small: (_, __) => const SizedBox(),
-              medium: (_, __) => const SizedBox(),
+              small: (_, __) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const DashatarPuzzleActionButton(),
+                ],
+              ),
+              medium: (_, __) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const DashatarPuzzleActionButton(),
+                ],
+              ),
               large: (_, __) => const DashatarPuzzleActionButton(),
             ),
             /*ResponsiveLayoutBuilder(
@@ -89,7 +99,6 @@ class DashatarStartSection extends StatelessWidget {
               medium: (_, __) => const DashatarTimer(),
               large: (_, __) => const SizedBox(),
             ),*/
-            const ResponsiveGap(small: 12),
           ],
         ),
       ),

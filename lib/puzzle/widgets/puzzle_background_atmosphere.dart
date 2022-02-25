@@ -49,7 +49,7 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleBackgroundAtmosphere> with
                   shape: BoxShape.circle,
                   color: const Color.fromARGB(0, 255, 255, 255),
                   boxShadow: [BoxShadow(
-                    color: const Color.fromARGB(50, 255, 255, 178),
+                    color: const Color.fromARGB(50, 255, 184, 178),
                       blurRadius: _animation!.value,
                       spreadRadius: _animation!.value,
                   )]
@@ -64,7 +64,7 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleBackgroundAtmosphere> with
                   shape: BoxShape.circle,
                   color: const Color.fromARGB(0, 255, 255, 255),
                   boxShadow: [BoxShadow(
-                    color: const Color.fromARGB(50, 255, 255, 178),
+                    color: const Color.fromARGB(50, 255, 184, 178),
                     blurRadius: _animation!.value,
                     spreadRadius: _animation!.value,
                   )]
@@ -79,7 +79,7 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleBackgroundAtmosphere> with
                   shape: BoxShape.circle,
                   color: const Color.fromARGB(0, 255, 255, 255),
                   boxShadow: [BoxShadow(
-                    color: const Color.fromARGB(50, 255, 255, 178),
+                    color: const Color.fromARGB(50, 255, 184, 178),
                     blurRadius: _animation!.value,
                     spreadRadius: _animation!.value,
                   )]

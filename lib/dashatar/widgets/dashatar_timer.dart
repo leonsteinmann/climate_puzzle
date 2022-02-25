@@ -17,7 +17,7 @@ class DashatarTimer extends StatelessWidget {
     Key? key,
     this.textStyle,
     this.iconSize,
-    this.iconPadding,
+    this.yearPadding,
     this.mainAxisAlignment,
   }) : super(key: key);
 
@@ -28,7 +28,7 @@ class DashatarTimer extends StatelessWidget {
   final Size? iconSize;
 
   /// The optional icon padding of this timer.
-  final double? iconPadding;
+  final double? yearPadding;
 
   /// The optional [MainAxisAlignment] of this timer.
   /// Defaults to [MainAxisAlignment.center] if not provided.
@@ -49,34 +49,24 @@ class DashatarTimer extends StatelessWidget {
                 ? PuzzleTextStyle.headline4
                 : PuzzleTextStyle.headline3);
 
-        final currentIconSize = iconSize ??
-            (currentSize == ResponsiveLayoutSize.small
-                ? const Size(28, 28)
-                : const Size(32, 32));
-
         final timeElapsed = Duration(seconds: secondsElapsed);
 
-        return Row(
+        return Column(
           key: const Key('dashatar_timer'),
-          mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
           children: [
+            Text("year", style: PuzzleTextStyle.bodyXSmall.copyWith(color: Colors.white),),
+            SizedBox(height: yearPadding,),
             AnimatedDefaultTextStyle(
               style: currentTextStyle.copyWith(
                 color: PuzzleColors.white,
               ),
               duration: PuzzleThemeAnimationDuration.textStyle,
-              child: Text(
+              child: Text("${DateTime.now().year.toDouble() + secondsElapsed}")
+              /*Text(
                 _formatDuration(timeElapsed),
                 key: ValueKey(secondsElapsed),
                 semanticsLabel: _getDurationLabel(timeElapsed, context),
-              ),
-            ),
-            Gap(iconPadding ?? 8),
-            Image.asset(
-              'assets/images/timer_icon.png',
-              key: const Key('dashatar_timer_icon'),
-              width: currentIconSize.width,
-              height: currentIconSize.height,
+              ),*/
             ),
           ],
         );

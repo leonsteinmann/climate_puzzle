@@ -141,7 +141,7 @@ class DashatarScore extends StatelessWidget {
                       DashatarTimer(
                         textStyle: timerTextStyle,
                         iconSize: timerIconSize,
-                        iconPadding: timerIconPadding,
+                        yearPadding: timerIconPadding,
                         mainAxisAlignment: MainAxisAlignment.start,
                       ),
                       const ResponsiveGap(

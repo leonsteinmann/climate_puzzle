@@ -83,16 +83,6 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   Widget boardBuilder(int size, List<Widget> tiles) {
     return Stack(
       children: [
-        Positioned(
-          top: 24,
-          left: 0,
-          right: 0,
-          child: ResponsiveLayoutBuilder(
-            small: (_, child) => const SizedBox(),
-            medium: (_, child) => const SizedBox(),
-            large: (_, child) => const DashatarTimer(),
-          ),
-        ),
         Column(
           children: [
             const ResponsiveGap(
@@ -128,53 +118,72 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   @override
   Widget boardBackgroundBuilder() {
-    return Column(
+    return Stack(
       children: [
-        const ResponsiveGap(
-          small: 32,
-          medium: 48,
-          large: 96,
+        Column(
+          children: [
+            const ResponsiveGap(
+              small: 32,
+              medium: 48,
+              large: 96,
+            ),
+            ResponsiveLayoutBuilder(
+              small: (_, __) => SizedBox.square(
+                dimension: _BoardSize.small*1.5,
+                child: Stack(
+                  children: [
+                    buildCompositionText(),
+                    Image.asset(
+                      'assets/images/earth_background.png',
+                      key: const Key('earth_background'),
+                    ),
+                  ],
+                ),
+              ),
+              medium: (_, __) => SizedBox.square(
+                dimension: _BoardSize.medium*1.5,
+                child: Stack(
+                  children: [
+                    buildCompositionText(),
+                    Image.asset(
+                      'assets/images/earth_background.png',
+                      key: const Key('earth_background'),
+                    ),
+                  ],
+                ),
+              ),
+              large: (_, __) => SizedBox.square(
+                dimension: _BoardSize.large*1.5,
+                child: Stack(
+                  children: [
+                    buildCompositionText(),
+                    Image.asset(
+                      'assets/images/earth_background.png',
+                      key: const Key('earth_background'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const ResponsiveGap(
+              large: 96,
+            ),
+          ],
         ),
-        ResponsiveLayoutBuilder(
-          small: (_, __) => SizedBox.square(
-            dimension: _BoardSize.small*1.5,
-            child: Stack(
-              children: [
-                buildCompositionText(),
-                Image.asset(
-                  'assets/images/earth_background.png',
-                  key: const Key('earth_background'),
-                ),
-              ],
-            ),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Column(
+            children: const [
+              ResponsiveGap(
+                small: 42,
+                medium: 58,
+                large: 120,
+              ),
+              DashatarTimer()
+            ],
           ),
-          medium: (_, __) => SizedBox.square(
-            dimension: _BoardSize.medium*1.5,
-            child: Stack(
-              children: [
-                buildCompositionText(),
-                Image.asset(
-                  'assets/images/earth_background.png',
-                  key: const Key('earth_background'),
-                ),
-              ],
-            ),
-          ),
-          large: (_, __) => SizedBox.square(
-            dimension: _BoardSize.large*1.5,
-            child: Stack(
-              children: [
-                buildCompositionText(),
-                Image.asset(
-                  'assets/images/earth_background.png',
-                  key: const Key('earth_background'),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const ResponsiveGap(
-          large: 96,
         ),
       ],
     );

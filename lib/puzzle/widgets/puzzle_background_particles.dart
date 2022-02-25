@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../colors/colors.dart';
+import '../bloc/puzzle_bloc.dart';
 
 class BackgroundParticlesWidget extends StatefulWidget {
 
@@ -12,7 +14,7 @@ class BackgroundParticlesWidget extends StatefulWidget {
 class _BackgroundParticlesWidgetState extends State<BackgroundParticlesWidget> with SingleTickerProviderStateMixin {
 
   AnimationController? _controller;
-  List<GasParticle> gasParticles = List<GasParticle>.generate(150, (index) => GasParticle());
+  List<GasParticle> gasParticles = List<GasParticle>.generate(500, (index) => GasParticle());
 
 
   @override
@@ -35,7 +37,9 @@ class _BackgroundParticlesWidgetState extends State<BackgroundParticlesWidget> w
     return AnimatedBuilder(
       animation: _controller!,
       builder: (_, __) {
-        gasParticles.forEach((gas) => gas.move(MediaQuery.of(context).size));
+        for (var gas in gasParticles) {
+          gas.move(MediaQuery.of(context).size);
+        }
         return CustomPaint(
           painter: BackgroundParticlesPainter(gasParticles),
         );
@@ -52,28 +56,32 @@ class BackgroundParticlesPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final main1 = Paint()..color = PuzzleColors.orangeDarkAccent;
-    final main2 = Paint()..color = PuzzleColors.redDarkAccent;
-    final main3 = Paint()..color = PuzzleColors.roseDarkAccent;
-    final main4 = Paint()..color = PuzzleColors.lilaDarkAccent;
+    const main1 = PuzzleColors.orangeDarkAccent;
+    const main2 = PuzzleColors.redDarkAccent;
+    const main3 = PuzzleColors.roseDarkAccent;
+    const main4 = PuzzleColors.lilaDarkAccent;
 
     gasParticles.forEach((gas) {
       /// 3D effect by making big particles faster than small
       if(gas.position.dx.isNegative) {
         if(gas.position.dy.isNegative) {
-          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main1);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), returnPaintFromColor(main1, gas.alpha));
         } else {
-          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main3);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), returnPaintFromColor(main3, gas.alpha));
         }
       } else {
         if(gas.position.dy.isNegative) {
-          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main2);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), returnPaintFromColor(main2, gas.alpha));
         } else {
-          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), main4);
+          canvas.drawCircle(gas.position, 2 + (gas.velocity *3), returnPaintFromColor(main4, gas.alpha));
         }
       }
 
     });
+  }
+
+  Paint returnPaintFromColor (Color color, double alpha) {
+    return Paint()..color = Color.fromARGB((alpha*255).toInt(), color.red, color.green, color.blue);
   }
 
   @override
@@ -82,6 +90,7 @@ class BackgroundParticlesPainter extends CustomPainter {
 
 class GasParticle {
   GasParticle();
+  double alpha = Random().nextDouble();
   double velocity = Random().nextDouble() * 2 + 2;
   Offset position = Offset(Random().nextDouble(), Random().nextDouble());
   Offset direction = Random().nextBool()

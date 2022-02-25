@@ -81,7 +81,7 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
                 text: "\nRead more",
                 recognizer: TapGestureRecognizer()
                   ..onTap = () async {
-                    htmlOpenLink("https://en.wikipedia.org/wiki/Climate_change_scenario");
+                    htmlOpenLink("https://en.wikipedia.org/wiki/Climate_change_mitigation_scenarios");
                   },
               ),
             ),

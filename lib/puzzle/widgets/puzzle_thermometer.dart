@@ -50,13 +50,13 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
         ),
         ResponsiveLayoutBuilder(
           small: (context, __) => Center(
-            child: buildHorizontalThermometer(timer),
+            child: buildSmallThermometer(timer),
           ),
           medium: (context, __) => Center(
-            child: buildHorizontalThermometer(timer),
+            child: buildMiddleThermometer(timer),
           ),
           large: (context, __) => Center(
-            child: buildVerticalThermometer(timer),
+            child: buildLargeThermometer(timer),
           ),
         ),
         const SizedBox(height: 10,),
@@ -90,7 +90,143 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
       );
   }
 
-  Stack buildHorizontalThermometer(TimerState timer) {
+  Stack buildSmallThermometer(TimerState timer) {
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        // No policy indicator line
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small, top: 20),
+          child: SizedBox(
+            height: 20.0,
+            width: 2.0,
+            child:
+            Container(
+              color: PuzzleColors.redLightAccent,
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small-15, top: 60),
+          child: Text(
+            "> 4°C",
+            style: PuzzleTextStyle.thermometer.copyWith(color: PuzzleColors.redLightAccent,),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small*2/3, top: 20),
+          child: SizedBox(
+            height: 20.0,
+            width: 2.0,
+            child:
+            Container(
+              color: PuzzleColors.roseLightAccent,
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small*2/3-15, top: 60),
+          child: Text(
+            "+ 3°C",
+            style: PuzzleTextStyle.thermometer.copyWith(color: PuzzleColors.roseLightAccent,),
+          ),
+        ),
+        // paris agreement indicator line
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small/3, top: 20),
+          child: SizedBox(
+            height: 20.0,
+            width: 2.0,
+            child:
+            Container(
+              color: PuzzleColors.lilaLightAccent,
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small/3-15, top: 60),
+          child: Text(
+            "+ 2°C",
+            style: PuzzleTextStyle.thermometer.copyWith(color: PuzzleColors.lilaLightAccent,),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: _BoardSize.small/3-40, top: 90),
+          child: Text(
+            "(Paris Agreement)",
+            style: PuzzleTextStyle.thermometer.copyWith(color: PuzzleColors.lilaLightAccent, fontSize:11),
+          ),
+        ),
+        // player indicator line
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.ease,
+          padding: EdgeInsets.only(left: (timer.secondsElapsed < _secTo2100) ? (_BoardSize.small - _startOffset)/_secTo2100 * timer.secondsElapsed + 13.0 : _BoardSize.small - 2, bottom: 30,),
+          child: SizedBox(
+            height: 30,
+            width: 4,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(2)),
+                color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
+                (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
+                (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
+                PuzzleColors.redLightAccent,
+              ),
+            ),
+          ),
+        ),
+        // temperature text
+        AnimatedContainer(
+            curve: Curves.ease,
+            duration: const Duration(milliseconds: 500),
+            padding: EdgeInsets.only(left: (timer.secondsElapsed < _secTo2100) ? (_BoardSize.small - _startOffset)/_secTo2100 * timer.secondsElapsed + 0.0 : _BoardSize.small + 5, bottom: 80),
+            child: Text(
+              "${(timer.secondsElapsed*3/_secTo2100 + 1).toStringAsFixed(1)}°C",
+              textAlign: TextAlign.center,
+              style: PuzzleTextStyle.thermometer.copyWith(
+                  color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
+                  (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
+                  (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
+                  PuzzleColors.redLightAccent,
+                  fontSize: 20
+              ),
+            )
+        ),
+        // background frame
+        Container(
+          decoration: const BoxDecoration(
+            //border: Border.all(color: Colors.white),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight, // 10% of the width, so there are ten blinds.
+              colors: <Color>[
+                PuzzleColors.blueLightAccent,
+                PuzzleColors.lilaLightAccent,
+                PuzzleColors.roseLightAccent,
+                PuzzleColors.redLightAccent,
+              ], // red to yellow
+              tileMode: TileMode.repeated, // repeats the gradient over the canvas
+            ),
+          ),
+          height: 20,
+          width: _BoardSize.small + 10,
+        ),
+        Container(
+          width: 30,
+          height: 30,
+          decoration: const BoxDecoration(
+            //border: Border.all(color: Colors.white),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            color: PuzzleColors.blueLightAccent,
+          ),
+        )
+      ],
+    );
+  }
+
+  Stack buildMiddleThermometer(TimerState timer) {
     return Stack(
       alignment: Alignment.centerLeft,
       children: [
@@ -227,7 +363,7 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
   }
 
 
-  Stack buildVerticalThermometer(TimerState timer) {
+  Stack buildLargeThermometer(TimerState timer) {
     return Stack(
             alignment: Alignment.bottomCenter,
             children: [

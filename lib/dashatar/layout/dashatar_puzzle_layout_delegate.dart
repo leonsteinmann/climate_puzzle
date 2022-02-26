@@ -189,91 +189,95 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
     );
   }
 
-  Padding buildCompositionText() {
+  ResponsiveLayoutBuilder buildCompositionText() {
     const main1 = PuzzleColors.orangeLightAccent;
     const main2 = PuzzleColors.redLightAccent;
     const main3 = PuzzleColors.roseLightAccent;
     const main4 = PuzzleColors.lilaLightAccent;
 
-    return Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+    return ResponsiveLayoutBuilder(
+        small: (_, child) => child!,
+        medium: (_, child) => child!,
+        large: (_, child) => child!,
+        child: (currentSize) {
+          final fontSize = currentSize == ResponsiveLayoutSize.small ? 16.0 : 22.0;
+          return Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 16),
-                    children: [
-                      buildUpperCase("CO", main1),
-                      buildLowerCase("2", main1),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          buildUpperCase("CO", main1, fontSize),
+                          buildLowerCase("2", main1, fontSize),
+                        ],
+                      ),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          buildUpperCase("CH", main2, fontSize),
+                          buildLowerCase("4", main2, fontSize),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 16),
-                    children: [
-                      buildUpperCase("CH", main2),
-                      buildLowerCase("4", main2),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          buildUpperCase("N", main3, fontSize),
+                          buildLowerCase("2", main3, fontSize),
+                          buildUpperCase("O", main3, fontSize),
+                        ],
+                      ),
+                    ),
+                    RichText(
+                      textAlign: TextAlign.end,
+                      text: TextSpan(
+                        children: [
+                          buildUpperCase("HFC", main4, fontSize),
+                          buildLowerCase("s", main4, fontSize),
+                          buildUpperCase(", PFC", main4, fontSize),
+                          buildLowerCase("s", main4, fontSize),
+                          buildUpperCase(", \nSF", main4, fontSize),
+                          buildLowerCase("6", main4, fontSize),
+                          buildUpperCase(", NF", main4, fontSize),
+                          buildLowerCase("3", main4, fontSize),
+                          buildUpperCase("", main4, fontSize),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 16),
-                    children: [
-                      buildUpperCase("N", main3),
-                      buildLowerCase("2", main3),
-                      buildUpperCase("O", main3),
-                    ],
-                  ),
-                ),
-                RichText(
-                  textAlign: TextAlign.end,
-                  text: TextSpan(
-                    style: TextStyle(fontSize: 16),
-                    children: [
-                      buildUpperCase("Fluorinated gases \n HFC", main4),
-                      buildLowerCase("s", main4),
-                      buildUpperCase(", PFC", main4),
-                      buildLowerCase("s", main4),
-                      buildUpperCase(", SF", main4),
-                      buildLowerCase("6", main4),
-                      buildUpperCase(", NF", main4),
-                      buildLowerCase("3", main4),
-                      buildUpperCase("", main4),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-  }
-
-  TextSpan buildUpperCase(String text, Color color) {
-    return TextSpan(
-      text: text,
-      style: PuzzleTextStyle.composition.copyWith(color: color),
+          );
+        },
     );
   }
 
-  WidgetSpan buildLowerCase(String text, Color color) {
+  TextSpan buildUpperCase(String text, Color color, double fontSize) {
+    return TextSpan(
+      text: text,
+      style: PuzzleTextStyle.composition.copyWith(color: color, fontSize: fontSize),
+    );
+  }
+
+  WidgetSpan buildLowerCase(String text, Color color, double fontSize) {
     return WidgetSpan(
       child: Transform.translate(
-        offset: const Offset(0.0, 4.0),
+        offset: Offset(0.0, fontSize/2),
         child: Text(
           text,
-          style: PuzzleTextStyle.composition.copyWith(color: color),
+          style: PuzzleTextStyle.composition.copyWith(color: color, fontSize: fontSize),
         ),
       ),
     );

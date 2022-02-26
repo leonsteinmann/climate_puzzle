@@ -151,14 +151,13 @@ class PuzzleTextStyle {
     );
   }
 
-  static const _baseTextStyle = TextStyle(
-    fontFamily: 'GoogleSans',
-    color: PuzzleColors.black,
+  static final _baseTextStyle = GoogleFonts.alata(
+    color: PuzzleColors.white,
     fontWeight: PuzzleFontWeight.regular,
   );
 
-  static final _bodyTextStyle = GoogleFonts.roboto(
-    color: PuzzleColors.black,
+  static final _bodyTextStyle = GoogleFonts.alata(
+    color: PuzzleColors.white,
     fontWeight: PuzzleFontWeight.regular,
   );
 }

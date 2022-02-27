@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
+import 'package:very_good_slide_puzzle/colors/colors.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
@@ -84,7 +85,7 @@ class PuzzleView extends StatelessWidget {
     return Scaffold(
       body: AnimatedContainer(
         duration: PuzzleThemeAnimationDuration.backgroundColorChange,
-        decoration: BoxDecoration(color: theme.backgroundColor),
+        decoration: const BoxDecoration(color: PuzzleColors.black),
         child: BlocListener<DashatarThemeBloc, DashatarThemeState>(
           listener: (context, state) {
             final dashatarTheme = context.read<DashatarThemeBloc>().state.theme;

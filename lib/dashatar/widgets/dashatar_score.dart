@@ -19,9 +19,9 @@ class DashatarScore extends StatelessWidget {
   /// {@macro dashatar_score}
   const DashatarScore({Key? key}) : super(key: key);
 
-  static const _smallImageOffset = Offset(124, 36);
-  static const _mediumImageOffset = Offset(215, -47);
-  static const _largeImageOffset = Offset(215, -47);
+  static const _smallImageOffset = Offset(360, 160);
+  static const _mediumImageOffset = Offset(480, 100);
+  static const _largeImageOffset = Offset(480, 100);
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +79,14 @@ class DashatarScore extends StatelessWidget {
             color: PuzzleColors.black,
             child: Stack(
               children: [
-                /*Positioned(
+                Positioned(
                   left: imageOffset.dx,
                   top: imageOffset.dy,
                   child: Image.asset(
-                    theme.successThemeAsset,
+                    'assets/images/earth_background.png',
                     height: imageHeight,
                   ),
-                ),*/
+                ),
                 Padding(
                   padding: const EdgeInsets.all(24),
                   child: Column(

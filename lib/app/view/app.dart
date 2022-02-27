@@ -16,6 +16,8 @@ import 'package:very_good_slide_puzzle/helpers/helpers.dart';
 import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 
+import '../../colors/colors.dart';
+
 class App extends StatefulWidget {
   const App({Key? key, ValueGetter<PlatformHelper>? platformHelperFactory})
       : _platformHelperFactory = platformHelperFactory ?? getPlatformHelper,
@@ -62,52 +64,12 @@ class _AppState extends State<App> {
     _timer = Timer(const Duration(milliseconds: 20), () {
       for (var i = 1; i <= 15; i++) {
         precacheImage(
-          Image.asset('assets/images/dashatar/green/$i.png').image,
-          context,
-        );
-        precacheImage(
-          Image.asset('assets/images/dashatar/blue/$i.png').image,
-          context,
-        );
-        precacheImage(
-          Image.asset('assets/images/dashatar/yellow/$i.png').image,
-          context,
-        );
-        precacheImage(
           Image.asset('assets/images/puzzle_tiles/$i.png').image,
           context,
         );
       }
       precacheImage(
-        Image.asset('assets/images/dashatar/gallery/green.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/dashatar/success/green.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/dashatar/gallery/blue.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/dashatar/success/blue.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/dashatar/gallery/yellow.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/dashatar/success/yellow.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/logo_flutter_color.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/logo_flutter_white.png').image,
+        Image.asset('assets/images/earth_small.png').image,
         context,
       );
       precacheImage(
@@ -116,18 +78,6 @@ class _AppState extends State<App> {
       );
       precacheImage(
         Image.asset('assets/images/timer_icon.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/simple_dash_large.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/simple_dash_medium.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/simple_dash_small.png').image,
         context,
       );
       precacheImage(
@@ -183,9 +133,9 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+        appBarTheme: const AppBarTheme(color: PuzzleColors.roseLightAccent),
         colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
+          accentColor: PuzzleColors.roseLightAccent,
         ),
       ),
       localizationsDelegates: const [

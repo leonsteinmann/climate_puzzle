@@ -39,11 +39,7 @@ flutter:
     - assets/images/
     - assets/images/audio_control/
     - assets/images/puzzle_tiles/
-    - assets/images/dashatar/gallery/
-    - assets/images/dashatar/success/
-    - assets/images/dashatar/green/
-    - assets/images/dashatar/blue/
-    - assets/images/dashatar/yellow/
+
   fonts:
     - family: GoogleSans
       fonts:

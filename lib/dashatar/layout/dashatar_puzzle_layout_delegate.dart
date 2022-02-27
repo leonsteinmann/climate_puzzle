@@ -128,9 +128,9 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                       'assets/images/earth_background.png',
                       key: const Key('earth_background'),
                     ),
-                    Stack(
-                      children: buildAirplanes(_BoardSize.small*1.5, 10, _),
-                    ),
+                    /*Stack(
+                      children: buildAirplanes(_BoardSize.small*1.5, 5, _),
+                    ),*/
                   ],
                 ),
               ),
@@ -217,7 +217,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
       BackgroundAirplaneWidget(
         backgroundSize: earthSize,
         airplaneSize: airplaneSize,
-        duration: 10,
+        duration: 12,
         startPosition: [earthSize*0.83, earthSize*0.8],
         endPosition: [earthSize*0.26, earthSize*0.26],
       ),
@@ -238,14 +238,14 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
       BackgroundAirplaneWidget(
         backgroundSize: earthSize,
         airplaneSize: airplaneSize,
-        duration: 3,
+        duration: 9,
         startPosition: [earthSize*0.9, earthSize*0.3],
         endPosition: [earthSize*0.8, earthSize*0.78],
       ),
       BackgroundAirplaneWidget(
         backgroundSize: earthSize,
         airplaneSize: airplaneSize,
-        duration: 4,
+        duration: 6,
         startPosition: [earthSize*0.95, earthSize*0.55],
         endPosition: [earthSize*0.68, earthSize*0.28],
       ),

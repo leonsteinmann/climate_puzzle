@@ -69,9 +69,7 @@ class DashatarShareYourScore extends StatelessWidget {
                       l10n.dashatarSuccessShareYourScoreTitle,
                       key: const Key('dashatar_share_your_score_title'),
                       textAlign: textAlign,
-                      style: titleTextStyle.copyWith(
-                        color: PuzzleColors.black,
-                      ),
+                      style: titleTextStyle
                     ),
                     const Gap(16),
                     SizedBox(
@@ -80,9 +78,7 @@ class DashatarShareYourScore extends StatelessWidget {
                         l10n.dashatarSuccessShareYourScoreMessage,
                         key: const Key('dashatar_share_your_score_message'),
                         textAlign: textAlign,
-                        style: messageTextStyle.copyWith(
-                          color: PuzzleColors.grey1,
-                        ),
+                        style: messageTextStyle
                       ),
                     ),
                   ],

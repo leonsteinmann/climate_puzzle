@@ -93,6 +93,11 @@ class _DashatarShareDialogState extends State<DashatarShareDialog>
             return Stack(
               key: const Key('dashatar_share_dialog'),
               children: [
+               SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Container(color: PuzzleColors.redDarkAccent),
+                ),
                 SingleChildScrollView(
                   child: LayoutBuilder(
                     builder: (context, constraints) {

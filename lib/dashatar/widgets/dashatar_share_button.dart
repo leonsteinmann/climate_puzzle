@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
+import 'package:very_good_slide_puzzle/colors/colors.dart';
 import 'package:very_good_slide_puzzle/helpers/helpers.dart';
 import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 import 'package:very_good_slide_puzzle/typography/typography.dart';
 
 /// The url to share for this Flutter Puzzle challenge.
-const _shareUrl = 'https://flutterhack.devpost.com/';
+const _shareUrl = 'https://climate-puzzle.com/';
 
 /// {@template dashatar_twitter_button}
-/// Displays a button that shares the Flutter Puzzle challenge
+/// Displays a button that shares the ClimatePuzzle challenge
 /// on Twitter when tapped.
 /// {@endtemplate}
 class DashatarTwitterButton extends StatelessWidget {
@@ -137,7 +138,7 @@ class _DashatarShareButtonState extends State<DashatarShareButton> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32),
             ),
-            backgroundColor: Colors.transparent,
+            backgroundColor: widget.color,
           ),
           onPressed: () async {
             widget.onPressed();
@@ -160,7 +161,7 @@ class _DashatarShareButtonState extends State<DashatarShareButton> {
               Text(
                 widget.title,
                 style: PuzzleTextStyle.headline5.copyWith(
-                  color: widget.color,
+                  color: PuzzleColors.white,
                 ),
               ),
               const Gap(24),

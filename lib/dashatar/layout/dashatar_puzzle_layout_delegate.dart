@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,8 +6,10 @@ import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../colors/colors.dart';
+import '../../puzzle/widgets/puzzle_background_airplanes.dart';
 import '../../typography/typography.dart';
 
 /// {@template dashatar_puzzle_layout_delegate}
@@ -66,20 +69,6 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   }
 
   @override
-  Widget backgroundBuilder(PuzzleState state) {
-    return Positioned(
-      bottom: 74,
-      right: 50,
-      child: Container(),
-      /*child: ResponsiveLayoutBuilder(
-        small: (_, child) => const SizedBox(),
-        medium: (_, child) => const SizedBox(),
-        large: (_, child) => const DashatarThemePicker(),
-      ),*/
-    );
-  }
-
-  @override
   Widget boardBuilder(int size, List<Widget> tiles) {
     return Stack(
       children: [
@@ -119,6 +108,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   @override
   Widget boardBackgroundBuilder() {
     return Stack(
+      alignment: Alignment.center,
       children: [
         Column(
           children: [
@@ -131,11 +121,15 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
               small: (_, __) => SizedBox.square(
                 dimension: _BoardSize.small*1.5,
                 child: Stack(
+                  /// TODO:Alignement to center??
                   children: [
                     buildCompositionText(),
                     Image.asset(
                       'assets/images/earth_background.png',
                       key: const Key('earth_background'),
+                    ),
+                    Stack(
+                      children: buildAirplanes(_BoardSize.small*1.5, 10, _),
                     ),
                   ],
                 ),
@@ -149,6 +143,9 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                       'assets/images/earth_background.png',
                       key: const Key('earth_background'),
                     ),
+                    Stack(
+                      children: buildAirplanes(_BoardSize.medium*1.5, 15, _),
+                    ),
                   ],
                 ),
               ),
@@ -160,6 +157,9 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                     Image.asset(
                       'assets/images/earth_background.png',
                       key: const Key('earth_background'),
+                    ),
+                    Stack(
+                      children: buildAirplanes(_BoardSize.large*1.5, 20,  _),
                     ),
                   ],
                 ),
@@ -189,6 +189,69 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
     );
   }
 
+  List<Widget> buildAirplanes(double earthSize, double airplaneSize, BuildContext context) {
+    final state = context.select((PuzzleBloc bloc) => bloc.state);
+
+    /*List<Widget> airplanes = [];
+    for (var i = 0; i < state.numberOfCorrectTiles; i++) {
+      airplanes.add(
+          BackgroundAirplaneWidget(
+            backgroundSize: earthSize,
+            airplaneSize: 25,
+            duration: (Random().nextDouble() * 5 + 4).round(),
+            startPosition: [earthSize/15 * i, earthSize/15 * i],
+            endPosition: [earthSize - earthSize/15 * i, earthSize - earthSize/15 * i],
+          )
+      );
+      print(airplanes[i]);
+    };
+    return airplanes;*/
+    return [
+      BackgroundAirplaneWidget(
+        backgroundSize: earthSize,
+        airplaneSize: airplaneSize,
+        duration: 6,
+        startPosition: [earthSize*0.16, earthSize*0.3],
+        endPosition: [earthSize*0.14, earthSize*0.5],
+      ),
+      BackgroundAirplaneWidget(
+        backgroundSize: earthSize,
+        airplaneSize: airplaneSize,
+        duration: 10,
+        startPosition: [earthSize*0.83, earthSize*0.8],
+        endPosition: [earthSize*0.26, earthSize*0.26],
+      ),
+      BackgroundAirplaneWidget(
+        backgroundSize: earthSize,
+        airplaneSize: airplaneSize,
+        duration: 7,
+        startPosition: [earthSize*0.7, earthSize*0.2],
+        endPosition: [earthSize*0.2, earthSize*0.7],
+      ),
+      BackgroundAirplaneWidget(
+        backgroundSize: earthSize,
+        airplaneSize: airplaneSize,
+        duration: 5,
+        startPosition: [earthSize*0.7, earthSize*0.2],
+        endPosition: [earthSize*0.26, earthSize*0.26],
+      ),
+      BackgroundAirplaneWidget(
+        backgroundSize: earthSize,
+        airplaneSize: airplaneSize,
+        duration: 3,
+        startPosition: [earthSize*0.9, earthSize*0.3],
+        endPosition: [earthSize*0.8, earthSize*0.78],
+      ),
+      BackgroundAirplaneWidget(
+        backgroundSize: earthSize,
+        airplaneSize: airplaneSize,
+        duration: 4,
+        startPosition: [earthSize*0.95, earthSize*0.55],
+        endPosition: [earthSize*0.68, earthSize*0.28],
+      ),
+    ];
+  }
+
   ResponsiveLayoutBuilder buildCompositionText() {
     const main1 = PuzzleColors.orangeLightAccent;
     const main2 = PuzzleColors.redLightAccent;
@@ -214,6 +277,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                         children: [
                           buildUpperCase("CO", main1, fontSize),
                           buildLowerCase("2", main1, fontSize),
+                          buildUpperCase(" | 80%", main1, fontSize),
                         ],
                       ),
                     ),
@@ -222,6 +286,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                         children: [
                           buildUpperCase("CH", main2, fontSize),
                           buildLowerCase("4", main2, fontSize),
+                          buildUpperCase(" | 10%", main2, fontSize),
                         ],
                       ),
                     ),
@@ -236,25 +301,32 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                           buildUpperCase("N", main3, fontSize),
                           buildLowerCase("2", main3, fontSize),
                           buildUpperCase("O", main3, fontSize),
+                          buildUpperCase(" | 7%", main3, fontSize),
                         ],
                       ),
                     ),
-                    RichText(
-                      textAlign: TextAlign.end,
-                      text: TextSpan(
-                        children: [
-                          buildUpperCase("HFC", main4, fontSize),
-                          buildLowerCase("s", main4, fontSize),
-                          buildUpperCase(", PFC", main4, fontSize),
-                          buildLowerCase("s", main4, fontSize),
-                          buildUpperCase(", \nSF", main4, fontSize),
-                          buildLowerCase("6", main4, fontSize),
-                          buildUpperCase(", NF", main4, fontSize),
-                          buildLowerCase("3", main4, fontSize),
-                          buildUpperCase("", main4, fontSize),
-                        ],
-                      ),
-                    ),
+                    Row(
+                      children: [
+                        RichText(
+                          textAlign: TextAlign.end,
+                          text: TextSpan(
+                            children: [
+                              buildUpperCase("HFC", main4, fontSize-4),
+                              buildLowerCase("s", main4, fontSize-4),
+                              buildUpperCase(" PFC", main4, fontSize-4),
+                              buildLowerCase("s", main4, fontSize-4),
+                              buildUpperCase(" \nSF", main4, fontSize-4),
+                              buildLowerCase("6", main4, fontSize-4),
+                              buildUpperCase(" NF", main4, fontSize-4),
+                              buildLowerCase("3", main4, fontSize-4),
+                            ],
+                          ),
+                        ),
+                        RichText(
+                          text: buildUpperCase(" | 3%", main4, fontSize),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ],
@@ -274,10 +346,10 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   WidgetSpan buildLowerCase(String text, Color color, double fontSize) {
     return WidgetSpan(
       child: Transform.translate(
-        offset: Offset(0.0, fontSize/2),
+        offset: Offset(0.0, fontSize/2-4),
         child: Text(
           text,
-          style: PuzzleTextStyle.composition.copyWith(color: color, fontSize: fontSize),
+          style: PuzzleTextStyle.composition.copyWith(color: color, fontSize: fontSize-4),
         ),
       ),
     );

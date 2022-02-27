@@ -20,7 +20,7 @@ class PuzzleThermometer extends StatefulWidget {
 class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTickerProviderStateMixin {
 
   final double _startOffset = 30.0;
-  final double _secTo2100 = (2100.0 - DateTime.now().year.toDouble());
+  final double _secTo2100 = (2100.0 - DateTime.now().year.toDouble())*3;
 
   @override
   void initState() {
@@ -65,29 +65,45 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
     );
   }
 
-  SizedBox buildThermometerDescription() {
-    return SizedBox(
-        width: 300,
-        child: Column(
-          children: [
-            Text(
-              "Projected global warming relative to preindustrial levels. Concrete values depend on future population levels, economic activity and many more factors. ",
-              style: PuzzleTextStyle.thermometer.copyWith(color: PuzzleColors.white, fontSize:11),
+  ResponsiveLayoutBuilder buildThermometerDescription() {
+    return ResponsiveLayoutBuilder(
+        small: (_, child) => child!,
+        medium: (_, child) => child!,
+        large: (_, child) => child!,
+        child: (currentSize) {
+          final fontSize = currentSize == ResponsiveLayoutSize.small ? 10.0 : 14.0;
+          final width = currentSize == ResponsiveLayoutSize.small ? 300.0 : 400.0;
+          return SizedBox(
+            width: width,
+            child: Column(
+              children: [
+                Text(
+                  "Projected global warming",
+                  textAlign: TextAlign.center,
+                  style: PuzzleTextStyle.thermometer.copyWith(fontSize: fontSize+6),
+                ),
+                SizedBox(height: 4,),
+                Text(
+                  "relative to preindustrial levels. Concrete values depend on future population levels, social values, technological change and many more factors.",
+                  textAlign: TextAlign.center,
+                  style: PuzzleTextStyle.thermometer.copyWith(fontSize: fontSize, fontWeight: FontWeight.normal),
+                ),
+                RichText(
+                  softWrap: true,
+                  text: TextSpan(
+                    style: PuzzleTextStyle.thermometer.copyWith(fontSize: fontSize, decoration: TextDecoration.underline,),
+                    text: "\nRead more",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        htmlOpenLink("https://en.wikipedia.org/wiki/Climate_change_mitigation_scenarios");
+                      },
+                  ),
+                ),
+              ],
             ),
-            RichText(
-              softWrap: true,
-              text: TextSpan(
-                style: PuzzleTextStyle.thermometer.copyWith(color: PuzzleColors.white, fontSize:11, decoration: TextDecoration.underline,),
-                text: "\nRead more",
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () async {
-                    htmlOpenLink("https://en.wikipedia.org/wiki/Climate_change_mitigation_scenarios");
-                  },
-              ),
-            ),
-          ],
-        ),
-      );
+          );
+        },
+    );
   }
 
   Stack buildSmallThermometer(TimerState timer) {
@@ -168,9 +184,9 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(2)),
-                color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
-                (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
-                (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
+                color: (timer.secondsElapsed*3/_secTo2100 + 1 < 2) ? PuzzleColors.blueLightAccent :
+                (timer.secondsElapsed*3/_secTo2100 + 1 < 3) ? PuzzleColors.lilaLightAccent :
+                (timer.secondsElapsed*3/_secTo2100 + 1 < 4) ? PuzzleColors.roseLightAccent :
                 PuzzleColors.redLightAccent,
               ),
             ),
@@ -185,9 +201,9 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
               "${(timer.secondsElapsed*3/_secTo2100 + 1).toStringAsFixed(1)}°C",
               textAlign: TextAlign.center,
               style: PuzzleTextStyle.thermometer.copyWith(
-                  color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
-                  (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
-                  (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
+                  color: (timer.secondsElapsed*3/_secTo2100 + 1 < 2) ? PuzzleColors.blueLightAccent :
+                  (timer.secondsElapsed*3/_secTo2100 + 1 < 3) ? PuzzleColors.lilaLightAccent :
+                  (timer.secondsElapsed*3/_secTo2100 + 1 < 4) ? PuzzleColors.roseLightAccent :
                   PuzzleColors.redLightAccent,
                   fontSize: 20
               ),
@@ -304,9 +320,9 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(2)),
-                color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
-                (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
-                (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
+                color: (timer.secondsElapsed*3/_secTo2100 + 1 < 2) ? PuzzleColors.blueLightAccent :
+                (timer.secondsElapsed*3/_secTo2100 + 1 < 3) ? PuzzleColors.lilaLightAccent :
+                (timer.secondsElapsed*3/_secTo2100 + 1 < 4) ? PuzzleColors.roseLightAccent :
                 PuzzleColors.redLightAccent,
               ),
             ),
@@ -321,9 +337,9 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
               "${(timer.secondsElapsed*3/_secTo2100 + 1).toStringAsFixed(1)}°C",
               textAlign: TextAlign.center,
               style: PuzzleTextStyle.thermometer.copyWith(
-                  color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
-                  (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
-                  (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
+                  color: (timer.secondsElapsed*3/_secTo2100 + 1 < 2) ? PuzzleColors.blueLightAccent :
+                  (timer.secondsElapsed*3/_secTo2100 + 1 < 3) ? PuzzleColors.lilaLightAccent :
+                  (timer.secondsElapsed*3/_secTo2100 + 1 < 4) ? PuzzleColors.roseLightAccent :
                   PuzzleColors.redLightAccent,
                   fontSize: 20
               ),
@@ -441,10 +457,10 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(2)),
-                      color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
-                      (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
-                      (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
-                        PuzzleColors.redLightAccent,
+                      color: (timer.secondsElapsed*3/_secTo2100 + 1 < 2) ? PuzzleColors.blueLightAccent :
+                      (timer.secondsElapsed*3/_secTo2100 + 1 < 3) ? PuzzleColors.lilaLightAccent :
+                      (timer.secondsElapsed*3/_secTo2100 + 1 < 4) ? PuzzleColors.roseLightAccent :
+                      PuzzleColors.redLightAccent,
                     ),
                   ),
                 ),
@@ -457,10 +473,10 @@ class _PuzzleBackgroundAtmosphere extends State<PuzzleThermometer> with SingleTi
                 child: Text(
                   "+ ${(timer.secondsElapsed*3/_secTo2100 + 1).toStringAsFixed(1)}°C",
                   style: PuzzleTextStyle.thermometer.copyWith(
-                  color: (timer.secondsElapsed < _secTo2100*1/3) ? PuzzleColors.blueLightAccent :
-                    (timer.secondsElapsed < _secTo2100*2/3) ? PuzzleColors.lilaLightAccent :
-                    (timer.secondsElapsed < _secTo2100*3/3) ? PuzzleColors.roseLightAccent :
-                      PuzzleColors.redLightAccent,
+                  color: (timer.secondsElapsed*3/_secTo2100 + 1 < 2) ? PuzzleColors.blueLightAccent :
+                    (timer.secondsElapsed*3/_secTo2100 + 1 < 3) ? PuzzleColors.lilaLightAccent :
+                    (timer.secondsElapsed*3/_secTo2100 + 1 < 4) ? PuzzleColors.roseLightAccent :
+                    PuzzleColors.redLightAccent,
                   fontSize: 20
                   ),
                 )

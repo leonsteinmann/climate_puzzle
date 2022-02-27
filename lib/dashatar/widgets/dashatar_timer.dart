@@ -61,7 +61,7 @@ class DashatarTimer extends StatelessWidget {
                 color: PuzzleColors.white,
               ),
               duration: PuzzleThemeAnimationDuration.textStyle,
-              child: Text("${DateTime.now().year.toDouble() + secondsElapsed}")
+              child: Text("${DateTime.now().year.toDouble() + (secondsElapsed/3).floor()}")
               /*Text(
                 _formatDuration(timeElapsed),
                 key: ValueKey(secondsElapsed),

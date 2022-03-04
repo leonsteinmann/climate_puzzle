@@ -20,7 +20,7 @@ void main() {
     setUp(() {
       dashatarThemeBloc = MockDashatarThemeBloc();
       when(() => dashatarThemeBloc.state).thenReturn(
-        DashatarThemeState(themes: [GreenDashatarTheme()]),
+        DashatarThemeState(themes: [DarkTheme()]),
       );
 
       puzzleBloc = MockPuzzleBloc();
@@ -89,7 +89,7 @@ void main() {
 
       when(() => dashatarThemeBloc.state).thenReturn(
         DashatarThemeState(
-          themes: [GreenDashatarTheme(), theme],
+          themes: [DarkTheme(), theme],
           theme: theme,
         ),
       );

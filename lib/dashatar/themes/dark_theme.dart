@@ -6,9 +6,9 @@ import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 /// {@template green_dashatar_theme}
 /// The green dashatar puzzle theme.
 /// {@endtemplate}
-class GreenDashatarTheme extends DashatarTheme {
+class DarkTheme extends DashatarTheme {
   /// {@macro green_dashatar_theme}
-  const GreenDashatarTheme() : super();
+  const DarkTheme() : super();
 
   @override
   String semanticsLabel(BuildContext context) =>

@@ -48,7 +48,7 @@ void main() {
             SimpleTheme(),
 
             ///  Name: 'Dashatar'
-            GreenDashatarTheme(),
+            DarkTheme(),
           ];
         },
         build: () => ThemeBloc(initialThemes: themes),

@@ -18,11 +18,11 @@ void main() {
     setUp(() {
       dashatarThemeBloc = MockDashatarThemeBloc();
       dashatarThemes = [
-        GreenDashatarTheme(),
+        DarkTheme(),
         YellowDashatarTheme(),
         BlueDashatarTheme()
       ];
-      dashatarTheme = GreenDashatarTheme();
+      dashatarTheme = DarkTheme();
       final dashatarThemeState = DashatarThemeState(
         themes: dashatarThemes,
         theme: dashatarTheme,

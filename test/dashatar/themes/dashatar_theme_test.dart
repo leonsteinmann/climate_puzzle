@@ -37,14 +37,14 @@ void main() {
     group('GreenDashatarTheme', () {
       test('supports value comparisons', () {
         expect(
-          GreenDashatarTheme(),
-          equals(GreenDashatarTheme()),
+          DarkTheme(),
+          equals(DarkTheme()),
         );
       });
 
       test('uses DashatarPuzzleLayoutDelegate', () {
         expect(
-          GreenDashatarTheme().layoutDelegate,
+          DarkTheme().layoutDelegate,
           equals(DashatarPuzzleLayoutDelegate()),
         );
       });
@@ -54,7 +54,7 @@ void main() {
         const tileValue = 6;
         when(() => tile.value).thenReturn(tileValue);
         expect(
-          GreenDashatarTheme().dashAssetForTile(tile),
+          DarkTheme().dashAssetForTile(tile),
           equals('assets/images/dashatar/green/6.png'),
         );
       });

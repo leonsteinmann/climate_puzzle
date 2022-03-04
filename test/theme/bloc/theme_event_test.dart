@@ -27,7 +27,7 @@ void main() {
           equals(ThemeUpdated(theme: SimpleTheme())),
         );
         expect(
-          ThemeUpdated(theme: GreenDashatarTheme()),
+          ThemeUpdated(theme: DarkTheme()),
           isNot(ThemeUpdated(theme: SimpleTheme())),
         );
       });

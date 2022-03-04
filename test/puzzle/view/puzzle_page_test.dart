@@ -36,7 +36,7 @@ void main() {
         dashatarThemes,
         equals([
           BlueDashatarTheme(),
-          GreenDashatarTheme(),
+          DarkTheme(),
           YellowDashatarTheme(),
         ]),
       );
@@ -55,7 +55,7 @@ void main() {
         initialThemes,
         equals([
           SimpleTheme(),
-          GreenDashatarTheme(),
+          DarkTheme(),
         ]),
       );
     });
@@ -152,7 +152,7 @@ void main() {
 
       dashatarThemeBloc = MockDashatarThemeBloc();
       when(() => dashatarThemeBloc.state)
-          .thenReturn(DashatarThemeState(themes: [GreenDashatarTheme()]));
+          .thenReturn(DashatarThemeState(themes: [DarkTheme()]));
 
       audioControlBloc = MockAudioControlBloc();
       when(() => audioControlBloc.state).thenReturn(AudioControlState());
@@ -166,12 +166,12 @@ void main() {
     testWidgets(
         'adds ThemeUpdated to ThemeBloc '
         'when DashatarTheme changes', (tester) async {
-      final themes = [GreenDashatarTheme(), BlueDashatarTheme()];
+      final themes = [DarkTheme(), BlueDashatarTheme()];
 
       whenListen(
         dashatarThemeBloc,
         Stream.fromIterable([
-          DashatarThemeState(themes: themes, theme: GreenDashatarTheme()),
+          DashatarThemeState(themes: themes, theme: DarkTheme()),
           DashatarThemeState(themes: themes, theme: BlueDashatarTheme()),
         ]),
       );
@@ -183,7 +183,7 @@ void main() {
         audioControlBloc: audioControlBloc,
       );
 
-      verify(() => themeBloc.add(ThemeUpdated(theme: GreenDashatarTheme())))
+      verify(() => themeBloc.add(ThemeUpdated(theme: DarkTheme())))
           .called(1);
 
       verify(() => themeBloc.add(ThemeUpdated(theme: BlueDashatarTheme())))
@@ -654,7 +654,7 @@ void main() {
       testWidgets(
           'renders PuzzleMenuItem '
           'for each theme in ThemeState', (tester) async {
-        final themes = [SimpleTheme(), GreenDashatarTheme()];
+        final themes = [SimpleTheme(), DarkTheme()];
         final themeState = ThemeState(themes: themes, theme: themes[1]);
         when(() => themeBloc.state).thenReturn(themeState);
 
@@ -707,7 +707,7 @@ void main() {
       late ThemeState themeState;
 
       setUp(() {
-        tappedTheme = GreenDashatarTheme();
+        tappedTheme = DarkTheme();
         themes = [SimpleTheme(), tappedTheme];
         themeState = ThemeState(themes: themes, theme: SimpleTheme());
 
@@ -774,7 +774,7 @@ void main() {
           when(() => themeBloc.state).thenReturn(
             ThemeState(
               themes: themes,
-              theme: GreenDashatarTheme(),
+              theme: DarkTheme(),
             ),
           );
 
@@ -808,8 +808,8 @@ void main() {
 
           await tester.pumpApp(
             PuzzleMenuItem(
-              theme: GreenDashatarTheme(),
-              themeIndex: themes.indexOf(GreenDashatarTheme()),
+              theme: DarkTheme(),
+              themeIndex: themes.indexOf(DarkTheme()),
             ),
             themeBloc: themeBloc,
             puzzleBloc: puzzleBloc,

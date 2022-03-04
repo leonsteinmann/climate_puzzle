@@ -24,13 +24,13 @@ void main() {
     test('default theme is GreenDashatarTheme', () {
       expect(
         DashatarThemeState(themes: [MockDashatarTheme()]).theme,
-        equals(GreenDashatarTheme()),
+        equals(DarkTheme()),
       );
     });
 
     group('copyWith', () {
       test('updates themes', () {
-        final themesA = [GreenDashatarTheme()];
+        final themesA = [DarkTheme()];
         final themesB = [BlueDashatarTheme()];
         expect(
           DashatarThemeState(
@@ -45,8 +45,8 @@ void main() {
       });
 
       test('updates theme', () {
-        final themes = [GreenDashatarTheme(), BlueDashatarTheme()];
-        final themeA = GreenDashatarTheme();
+        final themes = [DarkTheme(), BlueDashatarTheme()];
+        final themeA = DarkTheme();
         final themeB = BlueDashatarTheme();
 
         expect(

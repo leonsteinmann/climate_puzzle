@@ -30,20 +30,6 @@ class DashatarStartSection extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(20),
       child: Container(
-        /*padding: EdgeInsets.all(20),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter, // 10% of the width, so there are ten blinds.
-            colors: <Color>[
-              PuzzleColors.blueLightAccent,
-              PuzzleColors.lilaLightAccent,
-              PuzzleColors.roseLightAccent,
-              PuzzleColors.redLightAccent,
-            ], // red to yellow
-            tileMode: TileMode.repeated, // repeats the gradient over the canvas
-          ),
-        ),*/
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -67,18 +53,6 @@ class DashatarStartSection extends StatelessWidget {
               medium: 15,
               large: 32,
             ),
-            /*NumberOfMovesAndTilesLeft(
-              key: numberOfMovesAndTilesLeftKey,
-              numberOfMoves: state.numberOfMoves,
-              numberOfTilesLeft: status == DashatarPuzzleStatus.started
-                  ? state.numberOfTilesLeft
-                  : state.puzzle.tiles.length - 1,
-            ),*/
-            /*const ResponsiveGap(
-              small: 5,
-              medium: 10,
-              large: 32,
-            ),*/
             ResponsiveLayoutBuilder(
               small: (_, __) => Row(
                 mainAxisAlignment: MainAxisAlignment.center,

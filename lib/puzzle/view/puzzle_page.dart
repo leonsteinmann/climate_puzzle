@@ -12,7 +12,6 @@ import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_atmosphere.dart';
 import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_background_particles.dart';
 import 'package:very_good_slide_puzzle/puzzle/widgets/puzzle_thermometer.dart';
-import 'package:very_good_slide_puzzle/simple/simple.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:very_good_slide_puzzle/timer/timer.dart';
 import 'package:very_good_slide_puzzle/typography/typography.dart';
@@ -75,11 +74,6 @@ class PuzzleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
-
-    /// Shuffle only if the current theme is Simple.
-    final shufflePuzzle = theme is SimpleTheme;
-
     return Scaffold(
       body: AnimatedContainer(
         duration: PuzzleThemeAnimationDuration.backgroundColorChange,
@@ -99,8 +93,8 @@ class PuzzleView extends StatelessWidget {
               BlocProvider(
                 create: (context) => PuzzleBloc(4)
                   ..add(
-                    PuzzleInitialized(
-                      shufflePuzzle: shufflePuzzle,
+                    const PuzzleInitialized(
+                      shufflePuzzle: false,
                     ),
                   ),
               ),
@@ -120,9 +114,6 @@ class _Puzzle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
-    final state = context.select((PuzzleBloc bloc) => bloc.state);
-
     return LayoutBuilder(
       builder: (context, constraints) {
         return Stack(
@@ -483,8 +474,8 @@ class PuzzleMenuItem extends StatelessWidget {
 
                 // Initialize the puzzle board for the newly selected theme.
                 context.read<PuzzleBloc>().add(
-                      PuzzleInitialized(
-                        shufflePuzzle: theme is SimpleTheme,
+                      const PuzzleInitialized(
+                        shufflePuzzle: false,
                       ),
                     );
               },

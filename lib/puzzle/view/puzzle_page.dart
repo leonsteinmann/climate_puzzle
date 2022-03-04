@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
 import 'package:very_good_slide_puzzle/colors/colors.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
@@ -138,81 +137,6 @@ class _Puzzle extends StatelessWidget {
   }
 }
 
-/// {@template puzzle_header}
-/// Displays the header of the puzzle.
-/// {@endtemplate}
-@visibleForTesting
-class PuzzleHeader extends StatelessWidget {
-  /// {@macro puzzle_header}
-  const PuzzleHeader({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 96,
-      child: ResponsiveLayoutBuilder(
-        small: (context, child) => Stack(
-          children: [
-            const Align(
-              child: PuzzleLogo(),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 34),
-                child: AudioControl(key: audioControlKey),
-              ),
-            ),
-          ],
-        ),
-        medium: (context, child) => Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 50,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              PuzzleLogo(),
-              //PuzzleMenu(),
-            ],
-          ),
-        ),
-        large: (context, child) => Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 50,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              PuzzleLogo(),
-              //PuzzleMenu(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// {@template puzzle_logo}
-/// Displays the logo of the puzzle.
-/// {@endtemplate}
-@visibleForTesting
-class PuzzleLogo extends StatelessWidget {
-  /// {@macro puzzle_logo}
-  const PuzzleLogo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
-
-    return AppFlutterLogo(
-      key: puzzleLogoKey,
-      isColored: theme.isLogoColored,
-    );
-  }
-}
-
 /// {@template puzzle_sections}
 /// Displays start and end sections of the puzzle.
 /// {@endtemplate}
@@ -295,7 +219,6 @@ class PuzzleBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
     final puzzle = context.select((PuzzleBloc bloc) => bloc.state.puzzle);
-    final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     final size = puzzle.getDimension();
     if (size == 0) return const CircularProgressIndicator();

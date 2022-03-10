@@ -1,9 +1,6 @@
-import 'dart:async';
-import 'dart:math';
 import 'dart:html' as html;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_slide_puzzle/timer/bloc/timer_bloc.dart';
 import 'package:very_good_slide_puzzle/typography/text_styles.dart';

@@ -26,7 +26,7 @@ So instead of a "solution" puzzle with tiles of solar panels and electirc cars, 
 
 ## Preview
 
-![Preview](/Users/leonsteinmann/StudioProjects/climate_puzzle/assets/images/preview_snapshot.png)
+![Preview](assets/images/preview_snapshot.png)
 
 ## License
 

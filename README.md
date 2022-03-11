@@ -27,6 +27,8 @@ For the puzzle tiles I created the vector graphics for each of the sources of em
 
 Finally, I wanted to integrate also the game timer into the theme of climate change. After trying out a few things I figured a temperature scale combined with the years passed would be most tangible for the player to get a feeling for the currently projected global warming by 2100. I created a thermometer using only Flutter Widgets with LinearGradient and animated the position and color of the player's indicator in the Stack Widget. 
 
+To create a responsive layout I mainly used the Responsive Widgets from Very Good Ventures and aligned the elements accordingly, e.g. next to the vertical thermometer i created a horizontal version showing above the puzzle board on mobile.
+
 ## Highlights
 
 - Gas particles - randomly generated with different color, opacity, size, speed, direction values

@@ -12,7 +12,7 @@
     "@puzzleChallengeTitle": {
         "description": "Shown as the title of the puzzle"
     },
-    "puzzleChallengeDescription": "Better understand the human caused climate change. Sort the origins of each greenhouse gas by switching their positions. The longer you need, the warmer earth will become.",
+    "puzzleChallengeDescription": "Sort gas emitting activities of humans to match them with the respective type of greenhouse gas while the temperature on earth is rising and years are passing by.",
         "@puzzleChallengeTitle": {
             "description": "Puzzle description"
         },

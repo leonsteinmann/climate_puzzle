@@ -6,7 +6,7 @@ Check out [climate-puzzle.com](https://climate-puzzle.com/#/)
 
 ## Concept
 
-A slide puzzle with the goal of sorting gas emitting activities of humans to match them to the respective type of greenhouse gas while the temperature on earth is rising and years are passing by. 
+A slide puzzle with the goal of sorting gas emitting activities of humans to match them with the respective type of greenhouse gas while the temperature on earth is rising and years are passing by. 
 
 While solving the puzzle, better understand the origins of greenhouse gases ...and maybe even reflect on your role in this. 
 

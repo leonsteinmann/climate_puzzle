@@ -12,11 +12,20 @@ While solving the puzzle, better understand the origins of greenhouse gases ...a
 
 ## Behind the idea
 
-From the first time I heard about the Flutter Puzzle Hack, I knew I wanted to dedicate the project to the human caused climate change. After some brainstorming, I decided to extend the basic concept of a slide puzzle by telling a story rather - adding educational elements rather than simply extending game complexity. My goal was not to create an addictive game you play repeatedly but rather play it once and get something out of it. I wanted to create an atmosphere by utilizing animations and graphics to transport the message while the player is solving the puzzle. The message I thought about while developing the puzzle: 
+From the first time I heard about the Flutter Puzzle Hack, I knew I wanted to dedicate the project to address the human caused climate change. After some brainstorming, I decided to extend the basic concept of a slide puzzle by telling a story - adding educational elements rather than simply extending game complexity. My goal was not to create an addictive game you play repeatedly but rather play it a few times and get something out of it. I wanted to create an atmosphere by utilizing animations and graphics to transport the message while the player is solving the puzzle. The message I thought about while developing the puzzle: 
 
 > *To effectively address climate change, it is important to understand which actions have an actual impact on climate change.*
 
-So instead of a "solution" puzzle with tiles of solar panels and electric cars, the puzzle takes a step back and focuses on the "problem" part of climate change: What human-based actions are causing climate change?
+So instead of a "solution" puzzle with tiles of solar panels and electric cars, the puzzle takes a step back and focuses on the "problem" part of climate change: What human-based actions are causing climate change in the first place? 
+
+After finalizing the concept, the first step was to create an atmosphere that sets the mood for the game. I quickly came up with the idea to use the planet as a background of the puzzle board and to create flying particles as a symbol for the constantly happening emissions. For the image of the earth, I used an open licensed SVG from Wikipedia created a negative and used a radial color gradient to create a sun reflection effect in Figma. Additionally, I animated a pulsating atmosphere for a glow effect to better display the presence of atmosphere around planet earth. 
+Later on I added small animated airplanes flying around earth, which was more challenging as expected as I had to write a function to return the angle for each airplane based on the start and end positions to rotate the image accordingly. 
+Creating the particles was the biggest challenge as I didn't have previous experience with Flutter's CustomPainter combined with AnimationBuilder. After reading some Medium articles I found the awesome work of Felix Blaschke's "stars" (link below) and used an adjusted approach for spawning the 500 CustomPainter particles behind earth. 
+For the color scheme I started of with a red and blue tone highlighting temperature differences and created multiple matching colors (orange, rose, lila) using the color wheel. 
+
+For the puzzle tiles I created the vector graphics for each of the sources of emissions of each gas using Figma. All categories are based on official reports of the EU commission on carbon dioxide, methane, nitrous oxide and fluorinated gases.
+
+Finally, I wanted to integrate also the game timer into the theme of climate change. After trying out a few things I figured a temperature scale combined with the years passed would be most tangible for the player to get a feeling for the currently projected global warming by 2100. I created a thermometer using only Flutter Widgets with LinearGradient and animated the position and color of the player's indicator in the Stack Widget. 
 
 ## Highlights
 
@@ -30,12 +39,13 @@ So instead of a "solution" puzzle with tiles of solar panels and electric cars, 
 
 ![Preview](assets/images/preview_snapshot.png)
 
+Check out https://youtu.be/a9s3CXgvwk4 for the puzzle in action
+
 ## Inspiration
 
 ### Design
-
 - [Flutter Dashatar Puzzle Challange](https://flutter.github.io/samples/slide_puzzle.html) - code base as starting point for puzzle functionality
-- [Flutter Plasma by Felix Blaschke](https://flutterplasma.dev/) - "stars" inspiration for gas particles
+- [Flutter Plasma by Felix Blaschke](https://flutterplasma.dev/) - "stars" inspiration for gas particles and overall animation creation
 
 ### Climate change data
 

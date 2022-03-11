@@ -2,7 +2,7 @@
 
 Climate Puzzle - [Flutter Puzzle Hack](https://flutterhack.devpost.com/) submission by Leon Steinmann
 
-Check it out on [climate-puzzle.com]()
+Check out [climate-puzzle.com](https://climate-puzzle.com/#/)
 
 ## Concept
 

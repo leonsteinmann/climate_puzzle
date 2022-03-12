@@ -41,9 +41,9 @@ To create a responsive layout I mainly used the Responsive Widgets from Very Goo
 
 ![Preview](assets/images/readme/game_desktop.png)
 
-![thermome](/Users/leonsteinmann/StudioProjects/climate_puzzle/assets/images/readme/thermometer_mobile.png)
+![thermome](assets/images/readme/thermometer_mobile.png)
 
-![end card](/Users/leonsteinmann/StudioProjects/climate_puzzle/assets/images/readme/endcard_desktop.png)
+![end card](assets/images/readme/endcard_desktop.png)
 
 Check out https://youtu.be/a9s3CXgvwk4 for the puzzle in action
 
